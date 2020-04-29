@@ -1,0 +1,20 @@
+{
+  "id": "io.n8n.cloudronapp",
+  "title": "n8n.io",
+  "author": "N8N GMBH",
+  "description": "TODO: Add description",
+  "tagline": "Free and Open Workflow Automation Tool",
+  "version": "0.1.0",
+  "healthCheckPath": "/healthcheck",
+  "httpPort": 3000,
+  "addons": {
+    "localstorage": {},
+    "postgresql": {}
+  },
+  "manifestVersion": 2,
+  "website": "https://n8n.io",
+  "contactEmail": "support@clourdon.io",
+  "icon": "n8n-logo.png",
+  "tags": [ ],
+  "mediaLinks": [ "https://images.rapgenius.com/fd0175ef780e2feefb30055be9f2e022.520x343x1.jpg" ]
+}
