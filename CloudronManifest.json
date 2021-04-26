@@ -10,7 +10,7 @@
   "addons": {
     "localstorage": {},
     "postgresql": {},
-    "proxyAuth": {}
+    "proxyAuth": { "path": "!/webhook" }
   },
   "manifestVersion": 2,
   "website": "https://n8n.io",
