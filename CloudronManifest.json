@@ -4,7 +4,7 @@
   "author": "N8N GMBH",
   "description": "file://DESCRIPTION.md",
   "tagline": "Free and Open Workflow Automation Tool",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "healthCheckPath": "/healthcheck",
   "httpPort": 3000,
   "addons": {
@@ -17,7 +17,7 @@
   "website": "https://n8n.io",
   "contactEmail": "support@clourdon.io",
   "icon": "logo.png",
-  "tags": [ ],
+  "tags": [ "workflow", "automation", "ifttt", "zapier", "huginn", "integromat" ],
   "changelog": "file://CHANGELOG",
   "documentationUrl": "https://docs.cloudron.io/apps/n8n/",
   "minBoxVersion": "5.5.0",
