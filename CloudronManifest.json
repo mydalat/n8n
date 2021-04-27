@@ -2,7 +2,7 @@
   "id": "io.n8n.cloudronapp",
   "title": "n8n.io",
   "author": "N8N GMBH",
-  "description": "TODO: Add description",
+  "description": "file://DESCRIPTION.md",
   "tagline": "Free and Open Workflow Automation Tool",
   "version": "0.1.0",
   "healthCheckPath": "/healthcheck",
