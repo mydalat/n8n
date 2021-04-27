@@ -4,7 +4,7 @@
   "author": "N8N GMBH",
   "description": "TODO: Add description",
   "tagline": "Free and Open Workflow Automation Tool",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "healthCheckPath": "/healthcheck",
   "httpPort": 3000,
   "addons": {
@@ -18,5 +18,14 @@
   "contactEmail": "support@clourdon.io",
   "icon": "logo.png",
   "tags": [ ],
-  "mediaLinks": [ "https://images.rapgenius.com/fd0175ef780e2feefb30055be9f2e022.520x343x1.jpg" ]
+  "changelog": "file://CHANGELOG",
+  "documentationUrl": "https://docs.cloudron.io/apps/n8n/",
+  "minBoxVersion": "5.5.0",
+  "icon": "file://logo.png",
+  "forumUrl": "https://forum.cloudron.io/category/129/n8n",
+  "mediaLinks": [
+    "https://screenshots.cloudron.io/io.n8n.cloudronapp/workflow1.png",
+    "https://screenshots.cloudron.io/io.n8n.cloudronapp/workflow2.png",
+    "https://screenshots.cloudron.io/io.n8n.cloudronapp/workflow3.png"
+  ]
 }
