@@ -30,7 +30,8 @@ RUN mkdir -p /app/data && chown -R cloudron:cloudron /app/data
 #   * Error: EROFS: read-only file system, mkdir '/root/.n8n'
 # For runner processes, which don't seem to run as the configured user
 RUN ln -s /app/data/.cache /root/.cache && \
-    ln -s /app/data/.n8n /root/.n8n
+    ln -s /app/data/.n8n /root/.n8n && \
+    ln -s /app/data/share /root/.local/share/n8n
 
 WORKDIR /app/data
 
