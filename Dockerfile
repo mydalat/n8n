@@ -36,5 +36,12 @@ WORKDIR /app/data
 
 ENV N8N_CUSTOM_EXTENSIONS="/app/data/custom"
 ENV N8N_USER_FOLDER="/app/data"
+ENV N8N_LOG_OUTPUT="console,file"
+ENV N8N_LOG_LEVEL="debug"
+ENV N8N_LOG_FILE_LOCATION=/app/data/n8n.log
+ENV N8N_LOG_FILE_MAXSIZE=50
+ENV N8N_LOG_FILE_MAXCOUNT=60
+
+COPY docker/ /
 
 CMD [ "/app/pkg/start.sh" ]

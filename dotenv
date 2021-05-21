@@ -1,0 +1,9 @@
+EMAIL=username@domain.tld
+USERNAME=fist-.lastname
+PASSWORD=MySuperSecurePassword
+# DO NOT ADD my.
+CLOUDRON_URL=domain.tld
+RUN_IMG=(y/n)
+DOCKER_REPOSITORY_URL=hub.docker.io
+DOCKER_REPOSITORY_USERNAME=fist-.lastname
+DOCKER_REPOSITORY_PASSWORD=MySuperSecurePassword

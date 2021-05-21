@@ -9,6 +9,14 @@ sed -e "s,##HOSTNAME##,${CLOUDRON_APP_DOMAIN}," \
 echo "=> Ensure directories"
 mkdir -p /run/nginx /app/data/.cache /app/data/.n8n /app/data/custom /app/data/output
 
+if [[ ! -f "/app/data/.env" ]]; then
+  cp -r /app/code/sample.env /app/data/.env
+fi
+
+if [[ -f "/app/data/.env" ]]; then
+    export $(egrep -v '^#' /app/data/.env | xargs) &> /dev/null
+fi
+
 if [[ ! -f /app/data/.n8n/config ]]; then
   echo "=> Creating config file"
   echo "{}" > /app/data/.n8n/config
