@@ -3,6 +3,8 @@ FROM cloudron/base:3.0.0@sha256:455c70428723e3a823198c57472785437eb6eab082e79b3f
 ARG N8N_VERSION=0.117.0
 ARG NODE_VERSION=14.16.1
 
+COPY docker/ /
+
 RUN apt-get update && \
     apt-get -y install graphicsmagick && \
     rm -rf /var/cache/apt /var/lib/apt/lists
@@ -18,12 +20,6 @@ RUN npm install -g request@^2.34 n8n@${N8N_VERSION}
 
 RUN crudini --set /etc/supervisor/supervisord.conf supervisord logfile /run/supervisord.log && \
 	crudini --set /etc/supervisor/supervisord.conf supervisord logfile_backups 0
-ADD supervisor/ /etc/supervisor/conf.d/
-
-RUN mkdir -p /app/pkg
-ADD pkg/ /app/pkg/
-
-RUN mkdir -p /app/data && chown -R cloudron:cloudron /app/data
 
 # Fixes:
 #   * Error: EROFS: read-only file system, mkdir '/root/.cache'
@@ -34,14 +30,9 @@ RUN ln -s /app/data/.cache /root/.cache && \
 
 WORKDIR /app/data
 
-ENV N8N_CUSTOM_EXTENSIONS="/app/data/custom"
-ENV N8N_USER_FOLDER="/app/data"
-ENV N8N_LOG_OUTPUT="console,file"
-ENV N8N_LOG_LEVEL="debug"
-ENV N8N_LOG_FILE_LOCATION=/app/data/n8n.log
-ENV N8N_LOG_FILE_MAXSIZE=50
-ENV N8N_LOG_FILE_MAXCOUNT=60
-
-COPY docker/ /
+ENV N8N_CUSTOM_EXTENSIONS="/app/data/custom" \
+    N8N_USER_FOLDER="/app/data" \
+    N8N_CONFIG_FILES="/app/data/.n8n/app-config.json" \
+    N8N_LOG_OUTPUT="console"
 
 CMD [ "/app/pkg/start.sh" ]
