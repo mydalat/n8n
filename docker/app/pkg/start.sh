@@ -7,7 +7,7 @@ sed -e "s,##HOSTNAME##,${CLOUDRON_APP_DOMAIN}," \
     /app/pkg/nginx.conf  > /run/nginx.conf
 
 echo "=> Ensure directories"
-mkdir -p /run/nginx /app/data/.cache /app/data/.n8n /app/data/custom /app/data/output
+mkdir -p /run/nginx /app/data/.cache /app/data/.n8n /app/data/custom /app/data/output /app/data/root
 
 if [[ ! -f "/app/data/.env" ]]; then
   cp -r /app/code/sample.env /app/data/.env
@@ -35,7 +35,7 @@ jq '.database.postgresdb.port=env.CLOUDRON_POSTGRESQL_PORT' | \
 jq '.database.postgresdb.user=env.CLOUDRON_POSTGRESQL_USERNAME' | \
 jq '.database.postgresdb.password=env.CLOUDRON_POSTGRESQL_PASSWORD' | \
 jq '.database.postgresdb.database=env.CLOUDRON_POSTGRESQL_DATABASE' \
-> $CONFIG_FILE
+> /tmp/app-config.json && mv /tmp/app-config.json $CONFIG_FILE
 
 echo "=> Setting permissions"
 chown -R cloudron:cloudron /run /app/data
