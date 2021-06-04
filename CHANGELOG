@@ -4,3 +4,8 @@
 [0.2.0]
 * Update description
 
+[0.3.0]
+* Use latest version 
+* Fix Firefox
+* Allow custom configuration
+
