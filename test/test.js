@@ -5,6 +5,7 @@
 /* global before */
 /* global after */
 /* global it */
+/* global xit */
 
 'use strict';
 
@@ -13,7 +14,6 @@ require('chromedriver');
 var execSync = require('child_process').execSync,
     expect = require('expect.js'),
     path = require('path'),
-    fs = require('fs'),
     { Builder, By, Key, until } = require('selenium-webdriver'),
     { Options } = require('selenium-webdriver/chrome');
 
@@ -23,24 +23,32 @@ describe('Application life cycle test', function () {
     const LOCATION = 'test';
     const TEST_TIMEOUT = 10000;
     const EXEC_ARGS = { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' };
+    const username = process.env.USERNAME;
+    const email = process.env.EMAIL;
+    const password = process.env.PASSWORD;
 
-    let browser, app, downloadLink, downloadSiteLink;
+    let browser, app;
 
-    before(function () {
+    before(function (done) {
+        if (!process.env.EMAIL) return done(new Error('EMAIL env var not set'));
+        if (!process.env.PASSWORD) return done(new Error('PASSWORD env var not set'));
+        if (!process.env.USERNAME) return done(new Error('USERNAME env var not set'));
+
         browser = new Builder().forBrowser('chrome').setChromeOptions(new Options().windowSize({ width: 1280, height: 1024 })).build();
+        done();
     });
 
     after(function () {
         browser.quit();
     });
 
+    function sleep(millis) {
+        return new Promise(resolve => setTimeout(resolve, millis));
+    }
+
     async function waitForElement(elem) {
         await browser.wait(until.elementLocated(elem), TEST_TIMEOUT);
         await browser.wait(until.elementIsVisible(browser.findElement(elem)), TEST_TIMEOUT);
-    }
-
-    function sleep(millis) {
-        return new Promise(resolve => setTimeout(resolve, millis));
     }
 
     function getAppInfo() {
@@ -49,85 +57,76 @@ describe('Application life cycle test', function () {
         expect(app).to.be.an('object');
     }
 
-    async function getMainPage() {
-        await browser.get(`https://${app.fqdn}`);
+    async function login() {
+        await browser.get(`https://${app.fqdn}/login`);
 
-        await waitForElement(By.id('upload'));
+        await waitForElement(By.id('inputUsername'));
+
+        await browser.findElement(By.id('inputUsername')).sendKeys(username);
+        await browser.findElement(By.id('inputPassword')).sendKeys(password);
+        await browser.findElement(By.id('login')).click();
+
+        await sleep(2000);
+
+        await waitForElement(By.xpath(`/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div`));
     }
 
-    async function uploadFile() {
-        await browser.get(`https://${app.fqdn}`);
+    const saveButtonXpath = '/html/body/div[1]/div[1]/div/div/div/div/span[2]/button';
+    const addNodeButtonXpath = '/html/body/div[1]/div[3]/div/div[3]/button';
+    const nodeSearchFieldXpath = '/html/body/div[1]/div[3]/div/div[3]/div/div[3]/div[1]/div/input';
+    const nodeCloseButtonXpath = '/html/body/div[1]/div[3]/div/div[2]/div/div[3]';
 
-        await waitForElement(By.id('upload'));
-
-        let fileInput = await browser.findElement(By.id('file_select'));
-        await fileInput.sendKeys(path.resolve(__dirname, 'test.pdf'));
-
-        await waitForElement(By.id('send'));
-        await browser.findElement(By.id('send')).click();
-
-        await waitForElement(By.id('upload_link_text'));
-
-        downloadSiteLink = await browser.findElement(By.id('upload_link_text')).getText();
-        downloadLink = await browser.findElement(By.id('direct_link_text')).getText();
-
-        downloadSiteLink = downloadSiteLink.replace(`https://${app.fqdn}`, '');
-        downloadLink = downloadLink.replace(`https://${app.fqdn}`, '');
-
-        console.log('Got download link', downloadSiteLink, downloadLink);
+    async function openMenu() {
+        await browser.get(`https://${app.fqdn}/`);
+        await browser.findElement(By.xpath('//*[@id="collapse-change-button"]')).click();
+        await sleep(1000);
+    }
+    async function createWorkflow() {
+        await openMenu();
+        // click Workflows in menu
+        await browser.findElement(By.xpath('/html/body/div[1]/div[2]/div/div/ul/li[2]/div')).click();
+        await sleep(1000);
+        // click New in Workflows
+        await browser.findElement(By.xpath('/html/body/div[1]/div[2]/div/div/ul/li[2]/ul/li[1]')).click();
+        await sleep(500);
+        // click workflow name
+        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div')).click();
+        await sleep(500);
+        // Clear the field
+        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div/input')).clear();
+        await sleep(500);
+        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div/input')).sendKeys('Cloudron Test Workflow');
+        // Click save button
+        await browser.findElement(By.xpath(saveButtonXpath)).click();
+        // Add CoinGecko Node
+        await browser.findElement(By.xpath(addNodeButtonXpath)).click();
+        await sleep(500);
+        await browser.findElement(By.xpath(nodeSearchFieldXpath)).sendKeys("CoinGecko");
+        // Click CoinGecko Node
+        await browser.findElement(By.xpath('/html/body/div[1]/div[3]/div/div[3]/div/div[3]/div[3]/div/div')).click();
+        await sleep(2000);
+        // Close node config window
+        await browser.findElement(By.xpath(nodeCloseButtonXpath)).click();
+        // Part missing to connect the nodes to create a functional workflow
+        // save anyway
+        await browser.findElement(By.xpath(saveButtonXpath)).click();
     }
 
-    async function filePageExists() {
-        await browser.get(`https://${app.fqdn}${downloadSiteLink}`);
-
-        await waitForElement(By.id('submit_download'));
-    }
-
-    async function downloadFile() {
-        execSync(`curl -L "https://${app.fqdn}${downloadLink}" -o /tmp/test.pdf`);
-
-        var a = fs.readFileSync(path.resolve(__dirname, 'test.pdf'));
-        var b = fs.readFileSync('/tmp/test.pdf');
-
-        if(!a.equals(b)) throw('Files are not equal');
-    }
-
-    async function adminLogin() {
-        await browser.get(`https://${app.fqdn}/admin.php`);
-
-        await waitForElement(By.id('admin_password'));
-
-        await browser.findElement(By.id('admin_password')).sendKeys('changeme123');
-        await browser.findElement(By.xpath('//input[@type="submit"]')).click();
-
-        await waitForElement(By.xpath('//input[@value="Log out"]'));
-    }
-
-    async function adminLogout() {
-        await browser.get(`https://${app.fqdn}/admin.php`);
-
-        // should logout on reload
-        await waitForElement(By.id('admin_password'));
-    }
+    // TEST START
 
     xit('build app', function () { execSync('cloudron build', EXEC_ARGS); });
-    it('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
+    xit('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
 
     it('can get app information', getAppInfo);
-    it('can get main page', getMainPage);
-    it('can upload file', uploadFile);
-    it('file page exists', filePageExists);
-    it('can download file', downloadFile);
-    it('can login as admin', adminLogin);
-    it('can logout as admin', adminLogout);
+    it('can login', login);
+    it('Can create workflow', createWorkflow);
 
-    it('can restart app', function () { execSync(`cloudron restart --app ${app.id}`); });
+    xit('can restart app', function () { execSync(`cloudron restart --app ${app.id}`, EXEC_ARGS); });
 
-    it('file page exists', filePageExists);
-    it('can download file', downloadFile);
+    xit('can login', login);
 
-    it('backup app', function () { execSync(`cloudron backup create --app ${app.id}`, EXEC_ARGS); });
-    it('restore app', function () {
+    xit('backup app', function () { execSync(`cloudron backup create --app ${app.id}`, EXEC_ARGS); });
+    xit('restore app', function () {
         const backups = JSON.parse(execSync(`cloudron backup list --raw --app ${app.id}`));
         execSync(`cloudron uninstall --app ${app.id}`, EXEC_ARGS);
         execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS);
@@ -135,46 +134,32 @@ describe('Application life cycle test', function () {
         execSync(`cloudron restore --backup ${backups[0].id} --app ${app.id}`, EXEC_ARGS);
     });
 
-    it('file page exists', filePageExists);
-    it('can download file', downloadFile);
+    xit('can login', login);
 
-    it('move to different location', async function () {
+    xit('move to different location', async function () {
         // ensure we don't hit NXDOMAIN in the mean time
         await browser.get('about:blank');
         execSync(`cloudron configure --location ${LOCATION}2 --app ${app.id}`, EXEC_ARGS);
     });
 
-    it('can get app information', getAppInfo);
-    it('file page exists', filePageExists);
-    it('can download file', downloadFile);
-    it('can login as admin', adminLogin);
-    it('can logout as admin', adminLogout);
+    xit('can get app information', getAppInfo);
+    xit('can login', login);
 
-    it('uninstall app', async function () {
+    xit('uninstall app', async function () {
         // ensure we don't hit NXDOMAIN in the mean time
         await browser.get('about:blank');
         execSync(`cloudron uninstall --app ${app.id}`, EXEC_ARGS);
     });
 
     // test update
-    it('can install app', function () { execSync(`cloudron install --appstore-id net.jirafeau.cloudronapp --location ${LOCATION}`, EXEC_ARGS); });
-    it('can get app information', getAppInfo);
-    it('can get main page', getMainPage);
-    it('can upload file', uploadFile);
-    it('file page exists', filePageExists);
-    it('can download file', downloadFile);
-    it('can login as admin', adminLogin);
-    it('can logout as admin', adminLogout);
+    xit('can install app', function () { execSync(`cloudron install --appstore-id ${app.manifest.id} --location ${LOCATION}`, EXEC_ARGS); });
+    xit('can get app information', getAppInfo);
 
-    it('can update', function () { execSync(`cloudron update --app ${app.id}`, EXEC_ARGS); });
+    xit('can update', function () { execSync(`cloudron update --app ${app.id}`, EXEC_ARGS); });
 
-    it('can get main page', getMainPage);
-    it('file page exists', filePageExists);
-    it('can download file', downloadFile);
-    it('can login as admin', adminLogin);
-    it('can logout as admin', adminLogout);
+    xit('can login', login);
 
-    it('uninstall app', async function () {
+    xit('uninstall app', async function () {
         // ensure we don't hit NXDOMAIN in the mean time
         await browser.get('about:blank');
         execSync(`cloudron uninstall --app ${app.id}`, EXEC_ARGS);
