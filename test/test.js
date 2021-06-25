@@ -127,7 +127,7 @@ describe('Application life cycle test', function () {
         await browser.findElement(By.xpath('/html/body/div[1]/div[2]/div/div/ul/li[2]/ul/li[2]')).click();
         await sleep(500);
         // Find element with text "Cloudron Test Workflow" and click it.
-        await browser.findElement(By.xpath("//*[contains(text(), '" + workflowname + "')]")).click();
+        await browser.findElement(By.xpath(`//*[contains(text(), '${workflowname}')]`)).click();
         await sleep(500);
         await waitForElement(By.xpath('/html/body/div[1]/div[3]/div/div[1]/div[2]/div[2]/div[1]/div[4]/div/img'));
         await sleep(500);
@@ -164,24 +164,44 @@ describe('Application life cycle test', function () {
         await sleep(1000);
     }
 
+    async function checkWorkflowData(execNumber='1') {
+        await openMenu();
+        // Sleep for one minute to let the imported workflow generate some data 
+        await sleep(60000);
+        await browser.findElement(By.xpath('/html/body/div/div[2]/div/div/ul/li[4]')).click();
+        await sleep(1000);
+        // Find Name of workflow
+        await browser.findElement(By.xpath(`//*[contains(text(), '${default_workflow_import_name}')]`));
+        // Find Sucess label
+        await browser.findElement(By.xpath("//*[contains(text(), 'Success')]"));
+        // Open first execution
+        await browser.get(`https://${app.fqdn}/execution/${execNumber}`);
+        await sleep(1000);
+        // Find data notification symbol
+        await browser.findElement(By.xpath('/html/body/div/div[3]/div/div[1]/div[2]/div[2]/div[1]/div[1]'));
+        await sleep(1000);
+    }
 
     // TEST START
 
     xit('build app', function () { execSync('cloudron build', EXEC_ARGS); });
-    xit('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
+    it('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
 
     it('can get app information', getAppInfo);
     it('can login', login);
-    it('Can create workflow', createWorkflow);
-    it('Can open created workflow', openWorkflow);
+    it('can create workflow', createWorkflow);
+    it('can open created workflow', openWorkflow);
     it('can import workflow from URL', importWorkflowFromUrl);
+    it('check if workflow created data', checkWorkflowData);
 
-    xit('can restart app', function () { execSync(`cloudron restart --app ${app.id}`, EXEC_ARGS); });
+    it('can restart app', function () { execSync(`cloudron restart --app ${app.id}`, EXEC_ARGS); });
+    it('can login', login);
+    it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
+    it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
+    it('check if workflow creates data', checkWorkflowData.bind(null, '2'));
 
-    xit('can login', login);
-
-    xit('backup app', function () { execSync(`cloudron backup create --app ${app.id}`, EXEC_ARGS); });
-    xit('restore app', function () {
+    it('backup app', function () { execSync(`cloudron backup create --app ${app.id}`, EXEC_ARGS); });
+    it('restore app', function () {
         const backups = JSON.parse(execSync(`cloudron backup list --raw --app ${app.id}`));
         execSync(`cloudron uninstall --app ${app.id}`, EXEC_ARGS);
         execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS);
@@ -189,32 +209,52 @@ describe('Application life cycle test', function () {
         execSync(`cloudron restore --backup ${backups[0].id} --app ${app.id}`, EXEC_ARGS);
     });
 
-    xit('can login', login);
+    it('can restart app', function () { execSync(`cloudron restart --app ${app.id}`, EXEC_ARGS); });
+    it('can login', login);
+    it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
+    it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
+    it('check if workflow creates data', checkWorkflowData.bind(null, '3'));
 
-    xit('move to different location', async function () {
+    it('move to different location', async function () {
         // ensure we don't hit NXDOMAIN in the mean time
         await browser.get('about:blank');
         execSync(`cloudron configure --location ${LOCATION}2 --app ${app.id}`, EXEC_ARGS);
     });
 
-    xit('can get app information', getAppInfo);
-    xit('can login', login);
+    it('can get app information', getAppInfo);
+    it('can login', login);
+    it('can restart app', function () { execSync(`cloudron restart --app ${app.id}`, EXEC_ARGS); });
+    it('can login', login);
+    it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
+    it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
+    it('check if workflow creates data', checkWorkflowData.bind(null, '4'));
 
-    xit('uninstall app', async function () {
+    it('uninstall app', async function () {
         // ensure we don't hit NXDOMAIN in the mean time
         await browser.get('about:blank');
         execSync(`cloudron uninstall --app ${app.id}`, EXEC_ARGS);
     });
 
     // test update
-    xit('can install app', function () { execSync(`cloudron install --appstore-id ${app.manifest.id} --location ${LOCATION}`, EXEC_ARGS); });
-    xit('can get app information', getAppInfo);
+    it('can install app', function () { execSync(`cloudron install --appstore-id ${app.manifest.id} --location ${LOCATION}`, EXEC_ARGS); });
+    it('can get app information', getAppInfo);
+    it('can login', login);
+    it('can create workflow', createWorkflow);
+    it('can open created workflow', openWorkflow);
+    it('can import workflow from URL', importWorkflowFromUrl);
+    it('check if workflow created data', checkWorkflowData);
 
-    xit('can update', function () { execSync(`cloudron update --app ${app.id}`, EXEC_ARGS); });
+    it('can update', function () { execSync(`cloudron update --app ${app.id}`, EXEC_ARGS); });
 
-    xit('can login', login);
+    it('can login', login);
+    it('can restart app', function () { execSync(`cloudron restart --app ${app.id}`, EXEC_ARGS); });
 
-    xit('uninstall app', async function () {
+    it('can login', login);
+    it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
+    it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
+    it('check if workflow creates data', checkWorkflowData.bind(null, '2'));
+
+    it('uninstall app', async function () {
         // ensure we don't hit NXDOMAIN in the mean time
         await browser.get('about:blank');
         execSync(`cloudron uninstall --app ${app.id}`, EXEC_ARGS);
