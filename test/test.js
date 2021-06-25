@@ -32,7 +32,6 @@ describe('Application life cycle test', function () {
     let browser, app;
 
     before(function (done) {
-        if (!process.env.EMAIL) return done(new Error('EMAIL env var not set'));
         if (!process.env.PASSWORD) return done(new Error('PASSWORD env var not set'));
         if (!process.env.USERNAME) return done(new Error('USERNAME env var not set'));
 
