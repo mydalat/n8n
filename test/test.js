@@ -26,6 +26,9 @@ describe('Application life cycle test', function () {
     const username = process.env.USERNAME;
     const email = process.env.EMAIL;
     const password = process.env.PASSWORD;
+    const workflow_file_url = 'https://git.cloudron.io/cloudron/n8n-app/-/raw/update/testing/test/Cloudron_Test_Workflow.json';
+    const default_workflow_name = 'Cloudron Test Workflow';
+    const default_workflow_import_name = 'Cloudron Imported Workflow';
 
     let browser, app;
 
@@ -81,6 +84,7 @@ describe('Application life cycle test', function () {
         await browser.findElement(By.xpath('//*[@id="collapse-change-button"]')).click();
         await sleep(1000);
     }
+
     async function createWorkflow() {
         await openMenu();
         // click Workflows in menu
@@ -104,13 +108,62 @@ describe('Application life cycle test', function () {
         await browser.findElement(By.xpath(nodeSearchFieldXpath)).sendKeys("CoinGecko");
         // Click CoinGecko Node
         await browser.findElement(By.xpath('/html/body/div[1]/div[3]/div/div[3]/div/div[3]/div[3]/div/div')).click();
-        await sleep(2000);
+        await sleep(1000);
         // Close node config window
         await browser.findElement(By.xpath(nodeCloseButtonXpath)).click();
+        await sleep(1000);
         // Part missing to connect the nodes to create a functional workflow
         // save anyway
         await browser.findElement(By.xpath(saveButtonXpath)).click();
+        await sleep(1000);
     }
+
+    async function openWorkflow(workflowname=default_workflow_name) {
+        await openMenu();
+        // click Workflows in menu
+        await browser.findElement(By.xpath('/html/body/div[1]/div[2]/div/div/ul/li[2]/div')).click();
+        await sleep(1000);
+        // click open in Workflows
+        await browser.findElement(By.xpath('/html/body/div[1]/div[2]/div/div/ul/li[2]/ul/li[2]')).click();
+        await sleep(500);
+        // Find element with text "Cloudron Test Workflow" and click it.
+        await browser.findElement(By.xpath("//*[contains(text(), '" + workflowname + "')]")).click();
+        await sleep(500);
+        await waitForElement(By.xpath('/html/body/div[1]/div[3]/div/div[1]/div[2]/div[2]/div[1]/div[4]/div/img'));
+        await sleep(500);
+    }
+
+    async function importWorkflowFromUrl() {
+        await openMenu();
+        // click Workflows in menu
+        await browser.findElement(By.xpath('/html/body/div[1]/div[2]/div/div/ul/li[2]/div')).click();
+        await sleep(1000);
+        // click Import from URL
+        await browser.findElement(By.xpath('/html/body/div[1]/div[2]/div/div/ul/li[2]/ul/li[7]')).click();
+        await sleep(2000);
+        // Paste URL for file
+        await browser.findElement(By.xpath('/html/body/div[2]/div/div[2]/div[2]/div[1]/input')).sendKeys(workflow_file_url);
+        await sleep(1000);
+        // click import
+        await browser.findElement(By.xpath('/html/body/div[2]/div/div[3]/button[2]')).click();
+        await sleep(2000);
+        // click workflow name
+        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div')).click();
+        await sleep(1000);
+        // Clear the field
+        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div/input')).clear();
+        await sleep(1000);
+        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div/input')).sendKeys(default_workflow_import_name);
+        await browser.findElement(By.xpath(saveButtonXpath)).click();
+        await sleep(1000);
+        // Activate Workflow
+        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[2]/span/div')).click();
+        await sleep(2000);
+        // click dialog to activate and save
+        await browser.findElement(By.xpath('/html/body/div[2]/div/div[3]/button[2]')).click();
+        await sleep(1000);
+    }
+
 
     // TEST START
 
@@ -120,6 +173,8 @@ describe('Application life cycle test', function () {
     it('can get app information', getAppInfo);
     it('can login', login);
     it('Can create workflow', createWorkflow);
+    it('Can open created workflow', openWorkflow);
+    it('can import workflow from URL', importWorkflowFromUrl);
 
     xit('can restart app', function () { execSync(`cloudron restart --app ${app.id}`, EXEC_ARGS); });
 
