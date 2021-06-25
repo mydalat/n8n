@@ -24,7 +24,6 @@ describe('Application life cycle test', function () {
     const TEST_TIMEOUT = 10000;
     const EXEC_ARGS = { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' };
     const username = process.env.USERNAME;
-    const email = process.env.EMAIL;
     const password = process.env.PASSWORD;
     const workflow_file_url = 'https://git.cloudron.io/cloudron/n8n-app/-/raw/update/testing/test/Cloudron_Test_Workflow.json';
     const default_workflow_name = 'Cloudron Test Workflow';
