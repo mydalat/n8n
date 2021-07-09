@@ -74,7 +74,6 @@ describe('Application life cycle test', function () {
 
     const saveButtonXpath = '//li[@title="Workflow"]//span[text()="Save"]';
     const addNodeButtonXpath = '/html/body/div[1]/div[3]/div/div[3]/button';
-    // the `placeholder` in the input field might change in a future update look out for that
     const nodeSearchFieldXpath = '//div/input[@placeholder="Search nodes..."]';
     const nodeCloseButtonXpath = '/html/body/div[1]/div[3]/div/div[2]/div/div[3]';
 
