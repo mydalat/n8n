@@ -72,9 +72,9 @@ describe('Application life cycle test', function () {
         await waitForElement(By.xpath(`/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div`));
     }
 
-    const saveButtonXpath = '/html/body/div[1]/div[1]/div/div/div/div/span[2]/button';
+    const saveButtonXpath = '//li[@title="Workflow"]//span[text()="Save"]';
     const addNodeButtonXpath = '/html/body/div[1]/div[3]/div/div[3]/button';
-    const nodeSearchFieldXpath = '/html/body/div[1]/div[3]/div/div[3]/div/div[3]/div[1]/div/input';
+    const nodeSearchFieldXpath = '//div/input[@placeholder="Search nodes..."]';
     const nodeCloseButtonXpath = '/html/body/div[1]/div[3]/div/div[2]/div/div[3]';
 
     async function openMenu() {
@@ -86,18 +86,18 @@ describe('Application life cycle test', function () {
     async function createWorkflow() {
         await openMenu();
         // click Workflows in menu
-        await browser.findElement(By.xpath('/html/body/div[1]/div[2]/div/div/ul/li[2]/div')).click();
+        await browser.findElement(By.xpath('//li[@title="Workflow"]')).click();
         await sleep(1000);
         // click New in Workflows
-        await browser.findElement(By.xpath('/html/body/div[1]/div[2]/div/div/ul/li[2]/ul/li[1]')).click();
+        await browser.findElement(By.xpath('//li[@title="Workflow"]//span[text()="New"]')).click();
         await sleep(500);
         // click workflow name
-        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div')).click();
+        await browser.findElement(By.xpath('//span[@class="name-container"]')).click();
         await sleep(500);
         // Clear the field
-        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div/input')).clear();
+        await browser.findElement(By.xpath('//span[@class="name-container"]//input')).clear();
         await sleep(500);
-        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div/input')).sendKeys('Cloudron Test Workflow');
+        await browser.findElement(By.xpath('//span[@class="name-container"]//input')).sendKeys('Cloudron Test Workflow');
         // Click save button
         await browser.findElement(By.xpath(saveButtonXpath)).click();
         // Add CoinGecko Node
@@ -105,7 +105,7 @@ describe('Application life cycle test', function () {
         await sleep(500);
         await browser.findElement(By.xpath(nodeSearchFieldXpath)).sendKeys("CoinGecko");
         // Click CoinGecko Node
-        await browser.findElement(By.xpath('/html/body/div[1]/div[3]/div/div[3]/div/div[3]/div[3]/div/div')).click();
+        await browser.findElement(By.xpath('//div/div/span[text()="CoinGecko"]')).click();
         await sleep(1000);
         // Close node config window
         await browser.findElement(By.xpath(nodeCloseButtonXpath)).click();
@@ -119,46 +119,46 @@ describe('Application life cycle test', function () {
     async function openWorkflow(workflowname=default_workflow_name) {
         await openMenu();
         // click Workflows in menu
-        await browser.findElement(By.xpath('/html/body/div[1]/div[2]/div/div/ul/li[2]/div')).click();
+        await browser.findElement(By.xpath('//li[@title="Workflow"]')).click();
         await sleep(1000);
         // click open in Workflows
-        await browser.findElement(By.xpath('/html/body/div[1]/div[2]/div/div/ul/li[2]/ul/li[2]')).click();
+        await browser.findElement(By.xpath('//li[@title="Workflow"]//span[text()="Open"]')).click();
         await sleep(500);
         // Find element with text "Cloudron Test Workflow" and click it.
-        await browser.findElement(By.xpath(`//*[contains(text(), '${workflowname}')]`)).click();
+        await browser.findElement(By.xpath(`//tr//td//span[contains(text(), '${workflowname}')]`)).click();
         await sleep(500);
-        await waitForElement(By.xpath('/html/body/div[1]/div[3]/div/div[1]/div[2]/div[2]/div[1]/div[4]/div/img'));
+        await waitForElement(By.xpath(`//span[@title="${workflowname}"]`));
         await sleep(500);
     }
 
     async function importWorkflowFromUrl() {
         await openMenu();
         // click Workflows in menu
-        await browser.findElement(By.xpath('/html/body/div[1]/div[2]/div/div/ul/li[2]/div')).click();
+        await browser.findElement(By.xpath('//li[@title="Workflow"]')).click();
         await sleep(1000);
         // click Import from URL
-        await browser.findElement(By.xpath('/html/body/div[1]/div[2]/div/div/ul/li[2]/ul/li[7]')).click();
+        await browser.findElement(By.xpath('//li[@title="Workflow"]//span[text()="Import from URL"]')).click();
         await sleep(2000);
         // Paste URL for file
-        await browser.findElement(By.xpath('/html/body/div[2]/div/div[2]/div[2]/div[1]/input')).sendKeys(workflow_file_url);
+        await browser.findElement(By.xpath('//div[@aria-label="Import Workflow from URL:"]//input')).sendKeys(workflow_file_url);
         await sleep(1000);
         // click import
-        await browser.findElement(By.xpath('/html/body/div[2]/div/div[3]/button[2]')).click();
+        await browser.findElement(By.xpath('//div[@aria-label="Import Workflow from URL:"]//button/span[contains(text(), "Import")]')).click();
         await sleep(2000);
         // click workflow name
-        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div')).click();
+        await browser.findElement(By.xpath('//span[@class="name-container"]/span/span/span/div')).click();
         await sleep(1000);
         // Clear the field
-        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div/input')).clear();
+        await browser.findElement(By.xpath('//span[@class="name-container"]/span/span/span/div/input')).clear();
         await sleep(1000);
-        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div/input')).sendKeys(default_workflow_import_name);
+        await browser.findElement(By.xpath('//span[@class="name-container"]/span/span/span/div/input')).sendKeys(default_workflow_import_name);
         await browser.findElement(By.xpath(saveButtonXpath)).click();
         await sleep(1000);
         // Activate Workflow
-        await browser.findElement(By.xpath('/html/body/div[1]/div[1]/div/div/div/div/span[2]/span/div')).click();
+        await browser.findElement(By.xpath('//div[@title="Activate Workflow"]')).click();
         await sleep(2000);
         // click dialog to activate and save
-        await browser.findElement(By.xpath('/html/body/div[2]/div/div[3]/button[2]')).click();
+        await browser.findElement(By.xpath('//button/span[contains(text(), "Yes, activate and save!")]')).click();
         await sleep(1000);
     }
 
@@ -166,7 +166,7 @@ describe('Application life cycle test', function () {
         await openMenu();
         // Sleep for one minute to let the imported workflow generate some data 
         await sleep(60000);
-        await browser.findElement(By.xpath('/html/body/div/div[2]/div/div/ul/li[4]')).click();
+        await browser.findElement(By.xpath('//li/span[text()="Executions"]')).click();
         await sleep(1000);
         // Find Name of workflow
         await browser.findElement(By.xpath(`//*[contains(text(), '${default_workflow_import_name}')]`));
@@ -183,7 +183,7 @@ describe('Application life cycle test', function () {
     // TEST START
 
     xit('build app', function () { execSync('cloudron build', EXEC_ARGS); });
-    it('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
+    xit('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
 
     it('can get app information', getAppInfo);
     it('can login', login);
