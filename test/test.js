@@ -175,8 +175,8 @@ describe('Application life cycle test', function () {
         // Open first execution
         await browser.get(`https://${app.fqdn}/execution/${execNumber}`);
         await sleep(1000);
-        // Find data notification symbol
-        await browser.findElement(By.xpath('/html/body/div/div[3]/div/div[1]/div[2]/div[2]/div[1]/div[1]'));
+        // Check if element exists with class `has-data`
+        await browser.findElement(By.xpath('//*[contains(@class, "has-data")]'));
         await sleep(1000);
     }
 
