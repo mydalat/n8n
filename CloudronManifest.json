@@ -16,7 +16,7 @@
   "manifestVersion": 2,
   "website": "https://n8n.io",
   "contactEmail": "support@clourdon.io",
-  "tags": [ "hosting", "project" ],
+  "tags": [ "automation" ],
   "changelog": "file://CHANGELOG",
   "documentationUrl": "https://docs.cloudron.io/apps/n8n/",
   "minBoxVersion": "5.5.0",
