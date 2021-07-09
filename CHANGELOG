@@ -9,3 +9,7 @@
 * Fix Firefox
 * Allow custom configuration
 
+[1.0.0]
+* Update to latest version 0.127.0
+* add stable testing for future updates
+* change manifest information
