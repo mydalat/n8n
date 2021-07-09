@@ -25,7 +25,7 @@ describe('Application life cycle test', function () {
     const EXEC_ARGS = { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' };
     const username = process.env.USERNAME;
     const password = process.env.PASSWORD;
-    const workflow_file_url = 'https://git.cloudron.io/cloudron/n8n-app/-/raw/update/testing/test/Cloudron_Test_Workflow.json';
+    const workflow_file_url = 'https://git.cloudron.io/cloudron/n8n-app/-/raw/master/test/Cloudron_Test_Workflow.json';
     const default_workflow_name = 'Cloudron Test Workflow';
     const default_workflow_import_name = 'Cloudron Imported Workflow';
 
@@ -183,7 +183,7 @@ describe('Application life cycle test', function () {
     // TEST START
 
     xit('build app', function () { execSync('cloudron build', EXEC_ARGS); });
-    it('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
+    xit('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
 
     it('can get app information', getAppInfo);
     it('can login', login);
