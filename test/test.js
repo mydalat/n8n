@@ -183,7 +183,7 @@ describe('Application life cycle test', function () {
     // TEST START
 
     xit('build app', function () { execSync('cloudron build', EXEC_ARGS); });
-    xit('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
+    it('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
 
     it('can get app information', getAppInfo);
     it('can login', login);
