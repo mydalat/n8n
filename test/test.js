@@ -74,7 +74,7 @@ describe('Application life cycle test', function () {
 
     const saveButtonXpath = '//li[@title="Workflow"]//span[text()="Save"]';
     const addNodeButtonXpath = '/html/body/div[1]/div[3]/div/div[3]/button';
-    const nodeSearchFieldXpath = '//div/input[@placeholder="Search nodes..."]';
+    const nodeSearchFieldXpath = '//div/input[@placeholder="Search nodes..."] | //div/input[@placeholder="Type to filter..."]';
     const nodeCloseButtonXpath = '/html/body/div[1]/div[3]/div/div[2]/div/div[3]';
 
     async function openMenu() {
@@ -105,7 +105,7 @@ describe('Application life cycle test', function () {
         await sleep(500);
         await browser.findElement(By.xpath(nodeSearchFieldXpath)).sendKeys("CoinGecko");
         // Click CoinGecko Node
-        await browser.findElement(By.xpath('//div/div/span[text()="CoinGecko"]')).click();
+        await browser.findElement(By.xpath('//div/div/span[text()="CoinGecko"] | //div[@class="name"][contains(text(), "CoinGecko")]')).click();
         await sleep(1000);
         // Close node config window
         await browser.findElement(By.xpath(nodeCloseButtonXpath)).click();
@@ -183,7 +183,7 @@ describe('Application life cycle test', function () {
     // TEST START
 
     xit('build app', function () { execSync('cloudron build', EXEC_ARGS); });
-    xit('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
+    it('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
 
     it('can get app information', getAppInfo);
     it('can login', login);
