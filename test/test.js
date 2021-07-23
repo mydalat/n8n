@@ -103,7 +103,7 @@ describe('Application life cycle test', function () {
         // Add CoinGecko Node
         await browser.findElement(By.xpath(addNodeButtonXpath)).click();
         await sleep(500);
-        await browser.findElement(By.xpath(nodeSearchFieldXpath)).sendKeys("CoinGecko");
+        await browser.findElement(By.xpath(nodeSearchFieldXpath)).sendKeys('CoinGecko');
         // Click CoinGecko Node
         await browser.findElement(By.xpath('//div/div/span[text()="CoinGecko"] | //div[@class="name"][contains(text(), "CoinGecko")]')).click();
         await sleep(1000);
@@ -164,7 +164,7 @@ describe('Application life cycle test', function () {
 
     async function checkWorkflowData(execNumber='1') {
         await openMenu();
-        // Sleep for one minute to let the imported workflow generate some data 
+        console.log('Sleeping for one minute to let the imported workflow generate some data');
         await sleep(60000);
         await browser.findElement(By.xpath('//li/span[text()="Executions"]')).click();
         await sleep(1000);
@@ -207,7 +207,6 @@ describe('Application life cycle test', function () {
         execSync(`cloudron restore --backup ${backups[0].id} --app ${app.id}`, EXEC_ARGS);
     });
 
-    it('can restart app', function () { execSync(`cloudron restart --app ${app.id}`, EXEC_ARGS); });
     it('can login', login);
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
@@ -220,8 +219,6 @@ describe('Application life cycle test', function () {
     });
 
     it('can get app information', getAppInfo);
-    it('can login', login);
-    it('can restart app', function () { execSync(`cloudron restart --app ${app.id}`, EXEC_ARGS); });
     it('can login', login);
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
@@ -243,9 +240,6 @@ describe('Application life cycle test', function () {
     it('check if workflow created data', checkWorkflowData);
 
     it('can update', function () { execSync(`cloudron update --app ${app.id}`, EXEC_ARGS); });
-
-    it('can login', login);
-    it('can restart app', function () { execSync(`cloudron restart --app ${app.id}`, EXEC_ARGS); });
 
     it('can login', login);
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
