@@ -157,9 +157,11 @@ describe('Application life cycle test', function () {
         // Activate Workflow
         await browser.findElement(By.xpath('//div[@title="Activate Workflow"]')).click();
         await sleep(2000);
-        // click dialog to activate and save
-        await browser.findElement(By.xpath('//button/span[contains(text(), "Yes, activate and save!")]')).click();
-        await sleep(1000);
+        if (app.manifest.version !== '1.1.0') {
+            // click dialog to activate and save
+            await browser.findElement(By.xpath('//button/span[contains(text(), "Yes, activate and save!")]')).click();
+            await sleep(1000);
+        }
     }
 
     async function checkWorkflowData(execNumber='1') {
