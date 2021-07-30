@@ -2,10 +2,6 @@
 
 set -eu
 
-echo "=> Generating nginx.conf"
-sed -e "s,##HOSTNAME##,${CLOUDRON_APP_DOMAIN}," \
-    /app/pkg/nginx.conf  > /run/nginx.conf
-
 echo "=> Ensure directories"
 mkdir -p /run/nginx /app/data/.cache /app/data/.n8n /app/data/custom /app/data/output /app/data/root
 
@@ -41,4 +37,4 @@ echo "=> Setting permissions"
 chown -R cloudron:cloudron /run /app/data
 
 echo "=> Starting N8N"
-exec /usr/bin/supervisord --configuration /etc/supervisor/supervisord.conf --nodaemon -i N8N
+n8n start

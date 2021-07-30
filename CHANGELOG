@@ -20,3 +20,5 @@
 [1.1.0]
 * Update n8n to 0.131.0
 
+[1.1.1]
+* Fix manual executing loading forever
