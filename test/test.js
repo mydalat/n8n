@@ -156,11 +156,14 @@ describe('Application life cycle test', function () {
         await sleep(1000);
         // Activate Workflow
         await browser.findElement(By.xpath('//div[@title="Activate Workflow"]')).click();
-        await sleep(2000);
-        if (app.manifest.version !== '1.1.0') {
-            // click dialog to activate and save
-            await browser.findElement(By.xpath('//button/span[contains(text(), "Yes, activate and save!")]')).click();
-            await sleep(1000);
+    }
+
+    async function executeWorkflow() {
+        openWorkflow(default_workflow_import_name);
+        await browser.findElement(By.xpath('//button[contains(@class, "workflow-run-button")]')).click();
+        if (app.manifest.version >= '1.1.1') {
+            await waitForElement(By.xpath('//h2[@class="el-notification__title" and text()="Workflow got executed"]'));
+            await browser.findElement(By.xpath('//*[contains(@class, "has-data")]'));
         }
     }
 
@@ -193,12 +196,14 @@ describe('Application life cycle test', function () {
     it('can open created workflow', openWorkflow);
     it('can import workflow from URL', importWorkflowFromUrl);
     it('check if workflow created data', checkWorkflowData);
+    it('can manually execute imported workflow', executeWorkflow);
 
     it('can restart app', function () { execSync(`cloudron restart --app ${app.id}`, EXEC_ARGS); });
     it('can login', login);
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
-    it('check if workflow creates data', checkWorkflowData.bind(null, '2'));
+    it('check if workflow creates data', checkWorkflowData.bind(null, '3'));
+    it('can manually execute imported workflow', executeWorkflow);
 
     it('backup app', function () { execSync(`cloudron backup create --app ${app.id}`, EXEC_ARGS); });
     it('restore app', function () {
@@ -212,7 +217,8 @@ describe('Application life cycle test', function () {
     it('can login', login);
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
-    it('check if workflow creates data', checkWorkflowData.bind(null, '3'));
+    it('check if workflow creates data', checkWorkflowData.bind(null, '5'));
+    it('can manually execute imported workflow', executeWorkflow);
 
     it('move to different location', async function () {
         // ensure we don't hit NXDOMAIN in the mean time
@@ -224,7 +230,8 @@ describe('Application life cycle test', function () {
     it('can login', login);
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
-    it('check if workflow creates data', checkWorkflowData.bind(null, '4'));
+    it('check if workflow creates data', checkWorkflowData.bind(null, '7'));
+    it('can manually execute imported workflow', executeWorkflow);
 
     it('uninstall app', async function () {
         // ensure we don't hit NXDOMAIN in the mean time
@@ -240,13 +247,15 @@ describe('Application life cycle test', function () {
     it('can open created workflow', openWorkflow);
     it('can import workflow from URL', importWorkflowFromUrl);
     it('check if workflow created data', checkWorkflowData);
+    it('can manually execute imported workflow', executeWorkflow);
 
     it('can update', function () { execSync(`cloudron update --app ${app.id}`, EXEC_ARGS); });
 
     it('can login', login);
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
-    it('check if workflow creates data', checkWorkflowData.bind(null, '2'));
+    it('check if workflow creates data', checkWorkflowData.bind(null, '3'));
+    it('can manually execute imported workflow', executeWorkflow);
 
     it('uninstall app', async function () {
         // ensure we don't hit NXDOMAIN in the mean time
