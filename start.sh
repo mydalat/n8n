@@ -37,4 +37,4 @@ echo "=> Setting permissions"
 chown -R cloudron:cloudron /run /app/data
 
 echo "=> Starting N8N"
-n8n start
+exec gosu cloudron:cloudron n8n start
