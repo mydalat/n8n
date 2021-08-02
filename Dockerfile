@@ -8,7 +8,8 @@ ENV N8N_CUSTOM_EXTENSIONS="/app/data/custom" \
     N8N_CONFIG_FILES="/app/data/.n8n/app-config.json" \
     N8N_LOG_OUTPUT="console"
 
-COPY docker/ /
+RUN mkdir -p /app/pkg
+COPY start.sh sample.env /app/pkg/
 
 RUN apt-get update && \
     apt-get -y install graphicsmagick && \

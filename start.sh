@@ -6,7 +6,7 @@ echo "=> Ensure directories"
 mkdir -p /run/nginx /app/data/.cache /app/data/.n8n /app/data/custom /app/data/output /app/data/root
 
 if [[ ! -f "/app/data/.env" ]]; then
-  cp -r /app/code/sample.env /app/data/.env
+  cp -r /app/pkg/sample.env /app/data/.env
 fi
 
 if [[ -f "/app/data/.env" ]]; then
