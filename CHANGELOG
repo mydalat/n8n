@@ -28,3 +28,8 @@
 * remove supervisord for nginx and n8n
 * run n8n directly
 
+[1.3.0]
+* Update n8n to 0.132.2
+* disable update notifications
+* run as normal cloudron user
+
