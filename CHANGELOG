@@ -33,3 +33,7 @@
 * disable update notifications
 * run as normal cloudron user
 
+[1.4.0]
+* Update n8n to 0.133.0
+* Remove sendmail addon, please create a mailbox in Cloudro or outside Cloudron and use those credentials instead.
+
