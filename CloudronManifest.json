@@ -4,7 +4,7 @@
   "author": "n8n GmbH",
   "description": "file://DESCRIPTION.md",
   "tagline": "Free and Open Workflow Automation Tool",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "healthCheckPath": "/",
   "httpPort": 5678,
   "addons": {
@@ -13,6 +13,7 @@
     "proxyAuth": { "path": "!/webhook" }
   },
   "manifestVersion": 2,
+  "memoryLimit": 536870912,
   "website": "https://n8n.io",
   "contactEmail": "support@clourdon.io",
   "tags": [ "automation" ],
