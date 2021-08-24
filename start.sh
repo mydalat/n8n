@@ -23,6 +23,7 @@ fi
 echo "=> Loading configuration"
 export VUE_APP_URL_BASE_API="${CLOUDRON_APP_ORIGIN}/"
 export WEBHOOK_TUNNEL_URL="${CLOUDRON_APP_ORIGIN}/"
+export N8N_VERSION_NOTIFICATIONS_ENABLED=false
 
 cat $CONFIG_FILE | \
 jq '.database.type="postgresdb"' | \
