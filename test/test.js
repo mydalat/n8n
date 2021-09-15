@@ -69,13 +69,13 @@ describe('Application life cycle test', function () {
 
         await sleep(2000);
 
-        await waitForElement(By.xpath(`/html/body/div[1]/div[1]/div/div/div/div/span[1]/span/span/span/div`));
+        await waitForElement(By.xpath('//span[contains(text(), "Save")]'));
     }
 
     const saveButtonXpath = '//li[@title="Workflow"]//span[text()="Save"]';
     const addNodeButtonXpath = '/html/body/div[1]/div[3]/div/div[3]/button';
     const nodeSearchFieldXpath = '//div/input[@placeholder="Search nodes..."] | //div/input[@placeholder="Type to filter..."]';
-    const nodeCloseButtonXpath = '/html/body/div[1]/div[3]/div/div[2]/div/div[3]';
+    // const nodeCloseButtonXpath = '//button/i[contains(@class, "el-icon-close")]';
 
     async function openMenu() {
         await browser.get(`https://${app.fqdn}/`);
@@ -106,10 +106,10 @@ describe('Application life cycle test', function () {
         await browser.findElement(By.xpath(nodeSearchFieldXpath)).sendKeys('CoinGecko');
         // Click CoinGecko Node
         await browser.findElement(By.xpath('//div/div/span[text()="CoinGecko"] | //div[@class="name"][contains(text(), "CoinGecko")]')).click();
-        await sleep(1000);
+        await sleep(4000);
         // Close node config window
-        await browser.findElement(By.xpath(nodeCloseButtonXpath)).click();
-        await sleep(1000);
+        await browser.findElement(By.xpath('//html/body')).sendKeys(Key.ESCAPE); // clicking "close" button says element not interactible
+        await sleep(4000);
         // Part missing to connect the nodes to create a functional workflow
         // save anyway
         await browser.findElement(By.xpath(saveButtonXpath)).click();
@@ -175,7 +175,7 @@ describe('Application life cycle test', function () {
         // Find Name of workflow
         await browser.findElement(By.xpath(`//*[contains(text(), '${default_workflow_import_name}')]`));
         // Find Sucess label
-        await browser.findElement(By.xpath("//*[contains(text(), 'Success')]"));
+        await browser.findElement(By.xpath('//*[contains(text(), "Success")]'));
         // Open first execution
         await browser.get(`https://${app.fqdn}/execution/${execNumber}`);
         await sleep(5000);
