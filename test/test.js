@@ -168,7 +168,7 @@ describe('Application life cycle test', function () {
 
     async function checkWorkflowData(execNumber='1') {
         await openMenu();
-        console.log(`Sleeping for one minute to let the imported workflow generate some data in execution ${execNumber}`);
+        console.log(`Sleeping for one minute to let the imported workflow generate some data in execution ${execNumber} . ${(new Date()).toString()}`);
         await sleep(80000);
         await browser.findElement(By.xpath('//li/span[text()="Executions"]')).click();
         await sleep(10000);
