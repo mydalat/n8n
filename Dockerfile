@@ -25,7 +25,7 @@ ENV PATH="/usr/local/node-${NODE_VERSION}/bin:$PATH" \
 
 RUN npm install -g n8n@${N8N_VERSION}
 
-RUN crudini --set /etc/supervisor/supervisord.conf supervisord logfile /run/supervisord.log && \
+RUN crudini --set /etc/supervisor/supervisord.conf supervisord logfile /run/n8n/supervisord.log && \
 	crudini --set /etc/supervisor/supervisord.conf supervisord logfile_backups 0
 
 # Fixes:

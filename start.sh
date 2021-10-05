@@ -3,7 +3,7 @@
 set -eu
 
 echo "=> Ensure directories"
-mkdir -p /run/nginx /app/data/.cache /app/data/.n8n /app/data/custom /app/data/output /app/data/root
+mkdir -p /run/n8n /app/data/.cache /app/data/.n8n /app/data/custom /app/data/output /app/data/root
 
 if [[ ! -f "/app/data/.env" ]]; then
   cp -r /app/pkg/sample.env /app/data/.env
@@ -35,7 +35,7 @@ jq '.database.postgresdb.database=env.CLOUDRON_POSTGRESQL_DATABASE' \
 > /tmp/app-config.json && mv /tmp/app-config.json $CONFIG_FILE
 
 echo "=> Setting permissions"
-chown -R cloudron:cloudron /run /app/data
+chown -R cloudron:cloudron /run/n8n /app/data
 
 echo "=> Starting N8N"
 exec gosu cloudron:cloudron n8n start
