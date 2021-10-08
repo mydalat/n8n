@@ -5,12 +5,14 @@ set -eu
 echo "=> Ensure directories"
 mkdir -p /run/n8n /app/data/.cache /app/data/.n8n /app/data/custom /app/data/output /app/data/root
 
-if [[ ! -f "/app/data/.env" ]]; then
-  cp -r /app/pkg/sample.env /app/data/.env
+[[ -f /app/data/.env ]] && mv /app/data/.env /app/data/env 
+
+if [[ ! -f "/app/data/env" ]]; then
+  cp -r /app/pkg/sample.env /app/data/env
 fi
 
-if [[ -f "/app/data/.env" ]]; then
-    export $(egrep -v '^#' /app/data/.env | xargs) &> /dev/null
+if [[ -f "/app/data/env" ]]; then
+    export $(egrep -v '^#' /app/data/env | xargs) &> /dev/null
 fi
 
 CONFIG_FILE="/app/data/.n8n/app-config.json"
