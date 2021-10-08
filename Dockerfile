@@ -24,9 +24,6 @@ ENV PATH="/usr/local/node-${NODE_VERSION}/bin:$PATH"
 
 RUN npm install -g n8n@${N8N_VERSION}
 
-RUN crudini --set /etc/supervisor/supervisord.conf supervisord logfile /run/n8n/supervisord.log && \
-	crudini --set /etc/supervisor/supervisord.conf supervisord logfile_backups 0
-
 # Fixes:
 #   * Error: EROFS: read-only file system, mkdir '/root/.cache'
 #   * Error: EROFS: read-only file system, mkdir '/root/.n8n'
