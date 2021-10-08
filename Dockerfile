@@ -20,8 +20,7 @@ RUN mkdir -p /usr/local/node-${NODE_VERSION} && \
     curl -L https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz | tar zxf - --strip-components 1 -C /usr/local/node-${NODE_VERSION} && \
     chown -R cloudron:cloudron /usr/local/node-${NODE_VERSION}
 
-ENV PATH="/usr/local/node-${NODE_VERSION}/bin:$PATH" \
-    NPM_CONFIG_USER=cloudron
+ENV PATH="/usr/local/node-${NODE_VERSION}/bin:$PATH"
 
 RUN npm install -g n8n@${N8N_VERSION}
 
