@@ -9,7 +9,8 @@ ENV N8N_CUSTOM_EXTENSIONS="/app/data/custom" \
     N8N_VERSION_NOTIFICATIONS_ENABLED="false" \
     N8N_LOG_OUTPUT="console"
 
-RUN mkdir -p /app/pkg
+RUN mkdir -p /app/pkg /app/code
+WORKDIR /app/code
 COPY start.sh sample.env /app/pkg/
 
 RUN apt-get update && \
@@ -17,21 +18,10 @@ RUN apt-get update && \
     rm -rf /var/cache/apt /var/lib/apt/lists
 
 RUN mkdir -p /usr/local/node-${NODE_VERSION} && \
-    curl -L https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz | tar zxf - --strip-components 1 -C /usr/local/node-${NODE_VERSION} && \
-    chown -R cloudron:cloudron /usr/local/node-${NODE_VERSION}
+    curl -L https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz | tar zxf - --strip-components 1 -C /usr/local/node-${NODE_VERSION}
 
 ENV PATH="/usr/local/node-${NODE_VERSION}/bin:$PATH"
 
-RUN npm install -g n8n@${N8N_VERSION}
-
-# Fixes:
-#   * Error: EROFS: read-only file system, mkdir '/root/.cache'
-#   * Error: EROFS: read-only file system, mkdir '/root/.n8n'
-# For runner processes, which don't seem to run as the configured user
-RUN rm -rf /root/ && \
-    ln -s /app/data/root /root
-#    ln -s /app/data/.n8n /root/.n8n
-
-WORKDIR /app/data
+RUN npm install n8n@${N8N_VERSION}
 
 CMD [ "/app/pkg/start.sh" ]
