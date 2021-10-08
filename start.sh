@@ -11,9 +11,7 @@ if [[ ! -f "/app/data/env" ]]; then
   cp -r /app/pkg/sample.env /app/data/env
 fi
 
-if [[ -f "/app/data/env" ]]; then
-    export $(egrep -v '^#' /app/data/env | xargs) &> /dev/null
-fi
+export $(egrep -v '^#' /app/data/env | xargs) &> /dev/null
 
 CONFIG_FILE="/app/data/.n8n/app-config.json"
 
