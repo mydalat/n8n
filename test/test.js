@@ -11,7 +11,7 @@
 
 require('chromedriver');
 
-var execSync = require('child_process').execSync,
+const execSync = require('child_process').execSync,
     expect = require('expect.js'),
     path = require('path'),
     { Builder, By, Key, until } = require('selenium-webdriver'),
@@ -53,7 +53,7 @@ describe('Application life cycle test', function () {
     }
 
     function getAppInfo() {
-        var inspect = JSON.parse(execSync('cloudron inspect'));
+        const inspect = JSON.parse(execSync('cloudron inspect'));
         app = inspect.apps.filter(function (a) { return a.location.indexOf(LOCATION) === 0; })[0];
         expect(app).to.be.an('object');
     }
