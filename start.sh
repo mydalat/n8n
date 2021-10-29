@@ -3,7 +3,7 @@
 set -eu
 
 echo "=> Ensure directories"
-mkdir -p /run/n8n /app/data/.cache /app/data/.n8n /app/data/custom /app/data/output /app/data/root
+mkdir -p /run/n8n /app/data/.n8n /app/data/custom
 
 [[ ! -f "/app/data/env" ]] && cp /app/pkg/sample.env /app/data/env
 
