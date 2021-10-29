@@ -3,21 +3,26 @@
 set -eu
 
 echo "=> Ensure directories"
-mkdir -p /app/data/user /app/data/custom-extensions /app/data/configs/.n8n
+mkdir -p /app/data/user/.n8n /app/data/custom-extensions /app/data/configs
 
 # cleanup older unused locations
 rm -rf /app/data/output /app/data/root /app/data/.cache
 
-# migration from older location
-if [[ -d /app/data/.n8n ]]; then
-    mv /app/data/.n8n/* /app/data/configs/.n8n/
-    mv /app/data/configs/.n8n/app-config.json /app/data/configs/default.json
-    rm -rf /app/data/.n8n
+# migration .n8n
+if [[ -n "$(ls -A /app/data/.n8n/ 2>/dev/null)" ]]; then
+    mv /app/data/.n8n/* /app/data/user/.n8n/ || true
+    mv /app/data/user/.n8n/app-config.json /app/data/configs/default.json || true
 fi
-[[ -d /app/data/custom ]] && mv /app/data/custom /app/data/custom-extensions
+rm -rf /app/data/.n8n
+
+# migration custom
+if [[ -n "$(ls -A /app/data/custom 2>/dev/null)" ]]; then
+    mv /app/data/custom/* /app/data/custom-extensions
+fi
+rm -rf /app/data/custom
 
 # migration user folder
-find /app/data -type f ! -name env -exec mv '{}' /app/data/user/ \;
+find /app/data -maxdepth 1 -type f ! -name env -exec mv '{}' /app/data/user/ \;
 
 CONFIG_FILE="/app/data/configs/default.json"
 

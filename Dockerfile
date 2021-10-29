@@ -15,7 +15,9 @@ RUN mkdir -p /usr/local/node-${NODE_VERSION} && \
     curl -L https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz | tar zxf - --strip-components 1 -C /usr/local/node-${NODE_VERSION}
 ENV PATH="/usr/local/node-${NODE_VERSION}/bin:$PATH"
 
-COPY start.sh sample.env /app/pkg/
+# n8n
 RUN npm install n8n@${N8N_VERSION}
+
+COPY start.sh sample.env /app/pkg/
 
 CMD [ "/app/pkg/start.sh" ]
