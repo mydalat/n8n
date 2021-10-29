@@ -3,15 +3,15 @@
 set -eu
 
 echo "=> Ensure directories"
-mkdir -p /app/data/user /app/data/custom-extensions /app/data/configs
+mkdir -p /app/data/user /app/data/custom-extensions /app/data/configs/.n8n
 
 # cleanup older unused locations
 rm -rf /app/data/output /app/data/root /app/data/.cache
 
 # migration from older location
 if [[ -d /app/data/.n8n ]]; then
-    mv /app/data/.n8n/* /app/data/configs/
-    mv /app/data/configs/app-config.json /app/data/configs/default.json
+    mv /app/data/.n8n/* /app/data/configs/.n8n/
+    mv /app/data/configs/.n8n/app-config.json /app/data/configs/default.json
     rm -rf /app/data/.n8n
 fi
 [[ -d /app/data/custom ]] && mv /app/data/custom /app/data/custom-extensions
@@ -29,7 +29,7 @@ export WEBHOOK_TUNNEL_URL="${CLOUDRON_APP_ORIGIN}/"
 export N8N_VERSION_NOTIFICATIONS_ENABLED=false
 export N8N_DIAGNOSTICS_ENABLED=false
 export N8N_CUSTOM_EXTENSIONS="/app/data/custom-extensions"
-export N8N_USER_FOLDER="/app/data/user"
+export N8N_USER_FOLDER="/app/data/user" # always uses .n8n underneath
 export N8N_CONFIG_FILES="/app/data/configs/default.json"
 export N8N_LOG_OUTPUT="console"
 source /app/data/env
