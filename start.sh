@@ -3,7 +3,7 @@
 set -eu
 
 echo "=> Ensure directories"
-mkdir -p /run/n8n /app/data/.n8n /app/data/custom /app/data/configs
+mkdir -p /run/n8n /app/data/.n8n /app/data/custom-extensions /app/data/configs
 
 # cleanup older unused locations
 rm -rf /app/data/output /app/data/root
@@ -12,6 +12,7 @@ source /app/data/env
 
 # migration from older location
 [[ -f /app/data/.n8n/app-config.json ]] && mv /app/data/.n8n/app-config.json /app/data/configs/default.json
+[[ -d /app/data/custom ]] && mv /app/data/custom /app/data/custom-extensions
 
 CONFIG_FILE="/app/data/configs/default.json"
 
