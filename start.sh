@@ -5,6 +5,9 @@ set -eu
 echo "=> Ensure directories"
 mkdir -p /run/n8n /app/data/.n8n /app/data/custom /app/data/configs
 
+# cleanup older unused locations
+rm -rf /app/data/output /app/data/root
+
 source /app/data/env
 
 # migration from older location
