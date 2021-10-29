@@ -8,8 +8,6 @@ mkdir -p /app/data/user /app/data/custom-extensions /app/data/configs
 # cleanup older unused locations
 rm -rf /app/data/output /app/data/root /app/data/.cache
 
-source /app/data/env
-
 # migration from older location
 if [[ -d /app/data/.n8n ]]; then
     mv /app/data/.n8n/* /app/data/configs/
@@ -30,6 +28,11 @@ export VUE_APP_URL_BASE_API="${CLOUDRON_APP_ORIGIN}/"
 export WEBHOOK_TUNNEL_URL="${CLOUDRON_APP_ORIGIN}/"
 export N8N_VERSION_NOTIFICATIONS_ENABLED=false
 export N8N_DIAGNOSTICS_ENABLED=false
+export N8N_CUSTOM_EXTENSIONS="/app/data/custom-extensions"
+export N8N_USER_FOLDER="/app/data/user"
+export N8N_CONFIG_FILES="/app/data/configs/default.json"
+export N8N_LOG_OUTPUT="console"
+source /app/data/env
 
 cat $CONFIG_FILE | \
     jq '.database.type="postgresdb"' | \
