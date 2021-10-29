@@ -3,18 +3,16 @@
 set -eu
 
 echo "=> Ensure directories"
-mkdir -p /run/n8n /app/data/.n8n /app/data/custom
-
-[[ ! -f "/app/data/env" ]] && cp /app/pkg/sample.env /app/data/env
+mkdir -p /run/n8n /app/data/.n8n /app/data/custom /app/data/configs
 
 source /app/data/env
 
-CONFIG_FILE="/app/data/.n8n/app-config.json"
+# migration from older location
+[[ -f /app/data/.n8n/app-config.json ]] && mv /app/data/.n8n/app-config.json /app/data/configs/default.json
 
-if [[ ! -f $CONFIG_FILE ]]; then
-  echo "=> Creating config file"
-  echo "{}" > $CONFIG_FILE
-fi
+CONFIG_FILE="/app/data/configs/default.json"
+
+[[ ! -f $CONFIG_FILE ]] && echo "{}" > $CONFIG_FILE
 
 echo "=> Loading configuration"
 export VUE_APP_URL_BASE_API="${CLOUDRON_APP_ORIGIN}/"
