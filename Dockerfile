@@ -4,7 +4,7 @@ ARG N8N_VERSION=0.146.0
 ARG NODE_VERSION=14.17.0
 
 ENV N8N_CUSTOM_EXTENSIONS="/app/data/custom-extensions" \
-    N8N_USER_FOLDER="/app/data" \
+    N8N_USER_FOLDER="/app/data/user" \
     N8N_CONFIG_FILES="/app/data/configs/default.json" \
     N8N_VERSION_NOTIFICATIONS_ENABLED="false" \
     N8N_LOG_OUTPUT="console"

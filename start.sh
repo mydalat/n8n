@@ -3,16 +3,23 @@
 set -eu
 
 echo "=> Ensure directories"
-mkdir -p /run/n8n /app/data/.n8n /app/data/custom-extensions /app/data/configs
+mkdir -p /app/data/user /app/data/custom-extensions /app/data/configs
 
 # cleanup older unused locations
-rm -rf /app/data/output /app/data/root
+rm -rf /app/data/output /app/data/root /app/data/.cache
 
 source /app/data/env
 
 # migration from older location
-[[ -f /app/data/.n8n/app-config.json ]] && mv /app/data/.n8n/app-config.json /app/data/configs/default.json
+if [[ -d /app/data/.n8n ]]; then
+    mv /app/data/.n8n/* /app/data/configs/
+    mv /app/data/configs/app-config.json /app/data/configs/default.json
+    rm -rf /app/data/.n8n
+fi
 [[ -d /app/data/custom ]] && mv /app/data/custom /app/data/custom-extensions
+
+# migration user folder
+find /app/data -type f ! -name env -exec mv '{}' /app/data/user/ \;
 
 CONFIG_FILE="/app/data/configs/default.json"
 
@@ -34,7 +41,7 @@ cat $CONFIG_FILE | \
     > /tmp/app-config.json && mv /tmp/app-config.json $CONFIG_FILE
 
 echo "=> Setting permissions"
-chown -R cloudron:cloudron /run/n8n /app/data
+chown -R cloudron:cloudron /app/data
 
 echo "=> Starting N8N"
 exec gosu cloudron:cloudron /app/code/node_modules/.bin/n8n start
