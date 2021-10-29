@@ -18,6 +18,9 @@ ENV PATH="/usr/local/node-${NODE_VERSION}/bin:$PATH"
 # n8n
 RUN npm install n8n@${N8N_VERSION}
 
+# npm config set cache --global /run/npmcache
+RUN rm -rf /root/.npm && ln -s /run/npmcache /root/.npm
+
 COPY start.sh sample.env /app/pkg/
 
 CMD [ "/app/pkg/start.sh" ]

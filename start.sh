@@ -3,7 +3,7 @@
 set -eu
 
 echo "=> Ensure directories"
-mkdir -p /app/data/user/.n8n /app/data/custom-extensions /app/data/configs
+mkdir -p /run/npmcache /app/data/user/.n8n /app/data/custom-extensions /app/data/configs /app/data/modules
 
 # cleanup older unused locations
 rm -rf /app/data/output /app/data/root /app/data/.cache
@@ -37,6 +37,7 @@ export N8N_CUSTOM_EXTENSIONS="/app/data/custom-extensions"
 export N8N_USER_FOLDER="/app/data/user" # always uses .n8n underneath
 export N8N_CONFIG_FILES="/app/data/configs/default.json"
 export N8N_LOG_OUTPUT="console"
+[[ ! -f "/app/data/env" ]] && cp /app/pkg/sample.env /app/data/env
 source /app/data/env
 
 cat $CONFIG_FILE | \
