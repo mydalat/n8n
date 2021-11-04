@@ -3,7 +3,10 @@
 set -eu
 
 echo "=> Ensure directories"
-mkdir -p /run/npmcache /app/data/user/.n8n /app/data/custom-extensions /app/data/configs /app/data/modules
+mkdir -p /run/npmcache /app/data/user/.n8n /app/data/custom-extensions /app/data/configs
+
+# unused path
+rm -rf /app/data/modules
 
 CONFIG_FILE="/app/data/configs/default.json"
 
