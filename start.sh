@@ -5,25 +5,6 @@ set -eu
 echo "=> Ensure directories"
 mkdir -p /run/npmcache /app/data/user/.n8n /app/data/custom-extensions /app/data/configs /app/data/modules
 
-# cleanup older unused locations
-rm -rf /app/data/output /app/data/root /app/data/.cache
-
-# migration .n8n
-if [[ -n "$(ls -A /app/data/.n8n/ 2>/dev/null)" ]]; then
-    mv /app/data/.n8n/* /app/data/user/.n8n/ || true
-    mv /app/data/user/.n8n/app-config.json /app/data/configs/default.json || true
-fi
-rm -rf /app/data/.n8n
-
-# migration custom
-if [[ -n "$(ls -A /app/data/custom 2>/dev/null)" ]]; then
-    mv /app/data/custom/* /app/data/custom-extensions
-fi
-rm -rf /app/data/custom
-
-# migration user folder
-find /app/data -maxdepth 1 -type f ! -name env -exec mv '{}' /app/data/user/ \;
-
 CONFIG_FILE="/app/data/configs/default.json"
 
 [[ ! -f $CONFIG_FILE ]] && echo "{}" > $CONFIG_FILE
