@@ -84,3 +84,6 @@
 * Re-work data directory layout to be more clear
 * Support for using [custom node modules](https://docs.cloudron.io/apps/n8n/#custom-node-modules)
 
+[1.17.0]
+* Update n8n to 0.147.1
+
