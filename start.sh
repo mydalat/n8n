@@ -8,9 +8,9 @@ mkdir -p /run/npmcache /app/data/user/.n8n /app/data/custom-extensions /app/data
 # unused path
 rm -rf /app/data/modules
 
-CONFIG_FILE="/app/data/configs/default.json"
+config_file="/app/data/configs/default.json"
 
-[[ ! -f $CONFIG_FILE ]] && echo "{}" > $CONFIG_FILE
+[[ ! -f $config_file ]] && echo "{}" > $config_file
 
 echo "=> Loading configuration"
 export VUE_APP_URL_BASE_API="${CLOUDRON_APP_ORIGIN}/"
@@ -24,14 +24,14 @@ export N8N_LOG_OUTPUT="console"
 [[ ! -f "/app/data/env" ]] && cp /app/pkg/sample.env /app/data/env
 source /app/data/env
 
-cat $CONFIG_FILE | \
+cat $config_file | \
     jq '.database.type="postgresdb"' | \
     jq '.database.postgresdb.host=env.CLOUDRON_POSTGRESQL_HOST' | \
     jq '.database.postgresdb.port=env.CLOUDRON_POSTGRESQL_PORT' | \
     jq '.database.postgresdb.user=env.CLOUDRON_POSTGRESQL_USERNAME' | \
     jq '.database.postgresdb.password=env.CLOUDRON_POSTGRESQL_PASSWORD' | \
     jq '.database.postgresdb.database=env.CLOUDRON_POSTGRESQL_DATABASE' \
-    > /tmp/app-config.json && mv /tmp/app-config.json $CONFIG_FILE
+    > /tmp/app-config.json && mv /tmp/app-config.json $config_file
 
 echo "=> Setting permissions"
 chown -R cloudron:cloudron /app/data
