@@ -105,7 +105,8 @@ describe('Application life cycle test', function () {
         await sleep(500);
         await browser.findElement(By.xpath(nodeSearchFieldXpath)).sendKeys('CoinGecko');
         // Click CoinGecko Node
-        await browser.findElement(By.xpath('//div/div/span[text()="CoinGecko"] | //div[@class="name"][contains(text(), "CoinGecko")]')).click();
+        await waitForElement(By.xpath('//span[contains(text(), "CoinGecko")]'));
+        await browser.findElement(By.xpath('//span[contains(text(), "CoinGecko")]')).click();
         await sleep(4000);
         // Close node config window
         await browser.findElement(By.xpath('//html/body')).sendKeys(Key.ESCAPE); // clicking "close" button says element not interactible
@@ -155,7 +156,8 @@ describe('Application life cycle test', function () {
         await browser.findElement(By.xpath(saveButtonXpath)).click();
         await sleep(1000);
         // Activate Workflow
-        await browser.findElement(By.xpath('//div[@title="Activate Workflow"]')).click();
+        await waitForElement(By.xpath('//div[@title="Activate workflow"] | //div[@title="Activate Workflow"]'));
+        await browser.findElement(By.xpath('//div[@title="Activate workflow"] | //div[@title="Activate Workflow"]')).click();
     }
 
     async function executeWorkflow() {
