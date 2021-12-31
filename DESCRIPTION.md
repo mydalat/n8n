@@ -1,4 +1,4 @@
-This app packages n8n <upstream>0.155.2</upstream>
+This app packages n8n <upstream>0.156.0</upstream>
 
 n8n is an extendable workflow automation tool. n8n's node-based approach makes it highly versatile, enabling you to connect anything to everything.
 
