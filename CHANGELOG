@@ -114,3 +114,8 @@
 [1.25.0]
 * Update n8n to 0.156.0
 
+[1.25.1]
+* Update n9n to 0.157.0
+* [Full changelog](https://github.com/koel/koel/releases/tag/v5.1.12)
+* fix: broken release action by @phanan in https://github.com/koel/koel/pull/1399
+
