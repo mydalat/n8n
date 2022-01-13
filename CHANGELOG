@@ -126,3 +126,6 @@
 [1.26.0]
 * Update n8n to 0.158.0
 
+[1.26.1]
+* Add `marked` npm module
+
