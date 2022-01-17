@@ -1,14 +1,14 @@
 FROM cloudron/base:3.2.0@sha256:ba1d566164a67c266782545ea9809dc611c4152e27686fd14060332dd88263ea
 
-ARG N8N_VERSION=0.158.0
-ARG NODE_VERSION=14.17.0
-
 RUN mkdir -p /app/pkg /app/code
 WORKDIR /app/code
 
 RUN apt-get update && \
     apt-get -y install graphicsmagick && \
     rm -rf /var/cache/apt /var/lib/apt/lists
+
+ARG N8N_VERSION=0.159.0
+ARG NODE_VERSION=14.17.0
 
 # install node
 RUN mkdir -p /usr/local/node-${NODE_VERSION} && \
