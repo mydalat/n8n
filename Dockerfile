@@ -4,7 +4,7 @@ RUN mkdir -p /app/pkg /app/code
 WORKDIR /app/code
 
 RUN apt-get update && \
-    apt-get -y install graphicsmagick && \
+    apt-get -y install graphicsmagick recutils && \
     rm -rf /var/cache/apt /var/lib/apt/lists
 
 ARG N8N_VERSION=0.163.1
