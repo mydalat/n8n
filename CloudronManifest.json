@@ -4,7 +4,8 @@
   "author": "n8n GmbH",
   "description": "file://DESCRIPTION.md",
   "tagline": "Free and Open Workflow Automation Tool",
-  "version": "1.28.1",
+  "version": "1.29.0",
+  "upstreamVersion": "0.164.1",
   "healthCheckPath": "/",
   "httpPort": 5678,
   "addons": {
@@ -19,7 +20,7 @@
   "tags": [ "automation" ],
   "changelog": "file://CHANGELOG",
   "documentationUrl": "https://docs.cloudron.io/apps/n8n/",
-  "minBoxVersion": "5.5.0",
+  "minBoxVersion": "7.1.0",
   "icon": "file://logo.png",
   "forumUrl": "https://forum.cloudron.io/category/129/n8n",
   "mediaLinks": [
