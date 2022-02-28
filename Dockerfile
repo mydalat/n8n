@@ -7,7 +7,7 @@ RUN apt-get update && \
     apt-get -y install graphicsmagick recutils && \
     rm -rf /var/cache/apt /var/lib/apt/lists
 
-ARG N8N_VERSION=0.164.1
+ARG N8N_VERSION=0.165.0
 ARG NODE_VERSION=14.17.0
 
 # install node
