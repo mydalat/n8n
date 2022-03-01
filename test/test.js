@@ -48,6 +48,7 @@ describe('Application life cycle test', function () {
     }
 
     async function waitForElement(elem) {
+        await sleep(1000);
         await browser.wait(until.elementLocated(elem), TEST_TIMEOUT);
         await browser.wait(until.elementIsVisible(browser.findElement(elem)), TEST_TIMEOUT);
     }
@@ -81,7 +82,7 @@ describe('Application life cycle test', function () {
         await browser.get(`https://${app.fqdn}/`);
         await waitForElement(By.id('collapse-change-button'));
         await browser.findElement(By.id('collapse-change-button')).click();
-        await sleep(1000);
+        await sleep(2000);
     }
 
     async function createWorkflow() {
@@ -98,8 +99,8 @@ describe('Application life cycle test', function () {
         // Clear the field
         await waitForElement(By.xpath('//span[@class="name-container"]//input'));
         await browser.findElement(By.xpath('//span[@class="name-container"]//input')).clear();
-        await sleep(500);
-        await browser.findElement(By.xpath('//span[@class="name-container"]//input')).sendKeys('Cloudron Test Workflow');
+
+        await browser.findElement(By.xpath('//span[@class="name-container"]//input')).sendKeys(default_workflow_name);
         // Click save button
         await waitForElement(By.xpath(saveButtonXpath));
         await browser.findElement(By.xpath(saveButtonXpath)).click();
@@ -137,7 +138,13 @@ describe('Application life cycle test', function () {
     }
 
     async function importWorkflowFromUrl() {
-        await openWorkflow();
+        await openMenu();
+        // click Workflows in menu
+        await waitForElement(By.xpath('//li[@title="Workflow"]'));
+        await browser.findElement(By.xpath('//li[@title="Workflow"]')).click();
+        // click open in Workflows
+        await waitForElement(By.xpath('//li[@title="Workflow"]//span[text()="New"]'));
+        await browser.findElement(By.xpath('//li[@title="Workflow"]//span[text()="New"]')).click();
 
         // click Import from URL
         await waitForElement(By.xpath('//li[@title="Workflow"]//span[text()="Import from URL"]'));
@@ -147,17 +154,14 @@ describe('Application life cycle test', function () {
         await waitForElement(By.xpath('//div[@class="el-message-box__input"]//input'));
         await browser.findElement(By.xpath('//div[@class="el-message-box__input"]//input')).sendKeys(workflow_file_url);
 
-console.log(0)
         // click import
         await waitForElement(By.xpath('//span[contains(text(),"Import")]/parent::button'));
         await browser.findElement(By.xpath('//span[contains(text(),"Import")]/parent::button')).click();
 
-console.log(1)
         // click workflow name
         await waitForElement(By.xpath('//span[@class="name-container"]/span/span/span/div'));
         await browser.findElement(By.xpath('//span[@class="name-container"]/span/span/span/div')).click();
 
-console.log(2)
         // Clear the field
         await waitForElement(By.xpath('//span[@class="name-container"]/span/span/span/div/input'));
         await browser.findElement(By.xpath('//span[@class="name-container"]/span/span/span/div/input')).clear();
@@ -168,30 +172,25 @@ console.log(2)
         // Activate Workflow
         await waitForElement(By.xpath('//div[@title="Activate workflow"] | //div[@title="Activate Workflow"]'));
         await browser.findElement(By.xpath('//div[@title="Activate workflow"] | //div[@title="Activate Workflow"]')).click();
-    }
 
-    async function executeWorkflow() {
-        openWorkflow(default_workflow_import_name);
-        await waitForElement(By.xpath('//button[contains(@class, "workflow-run-button")]'));
-        await browser.findElement(By.xpath('//button[contains(@class, "workflow-run-button")]')).click();
-        await waitForElement(By.xpath('//*[contains(@class, "has-data")]'));
+        // wait for saving
+        await sleep(1000);
     }
 
     async function checkWorkflowData(execNumber='1') {
         await openMenu();
         console.log(`Sleeping for one minute to let the imported workflow generate some data in execution ${execNumber} . ${(new Date()).toString()}`);
-        await sleep(80000);
+        await sleep(70000);
+        await waitForElement(By.xpath('//li/span[text()="Executions"]'));
         await browser.findElement(By.xpath('//li/span[text()="Executions"]')).click();
-        await sleep(10000);
+        await sleep(2000);
         // Find Name of workflow
-        await browser.findElement(By.xpath(`//*[contains(text(), '${default_workflow_import_name}')]`));
+        await browser.findElement(By.xpath(`//span[@class="workflow-name"][contains(text(), '${default_workflow_import_name}')]`));
         // Find Sucess label
-        await browser.findElement(By.xpath('//*[contains(text(), "Success")]'));
+        await browser.findElement(By.xpath('//span[contains(text(), "Success")]'));
         // Open first execution
         await browser.get(`https://${app.fqdn}/execution/${execNumber}`);
         await sleep(5000);
-        // not sure what to look for here, it's hidden in SVGs
-        // await browser.findElement(By.xpath('//title[contains(text(), "Execution was successful")]'));
     }
 
     // TEST START
@@ -205,14 +204,12 @@ console.log(2)
     it('can open created workflow', openWorkflow);
     it('can import workflow from URL', importWorkflowFromUrl);
     it('check if workflow created data', checkWorkflowData);
-    xit('can manually execute imported workflow', executeWorkflow);
 
     it('can restart app', function () { execSync(`cloudron restart --app ${app.id}`, EXEC_ARGS); });
     it('can login', login);
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
     it('check if workflow creates data', checkWorkflowData.bind(null, '3'));
-    xit('can manually execute imported workflow', executeWorkflow);
 
     it('backup app', function () { execSync(`cloudron backup create --app ${app.id}`, EXEC_ARGS); });
     it('restore app', function () {
@@ -227,7 +224,6 @@ console.log(2)
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
     it('check if workflow creates data', checkWorkflowData.bind(null, '5'));
-    xit('can manually execute imported workflow', executeWorkflow);
 
     it('move to different location', async function () {
         // ensure we don't hit NXDOMAIN in the mean time
@@ -240,7 +236,6 @@ console.log(2)
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
     it('check if workflow creates data', checkWorkflowData.bind(null, '7'));
-    xit('can manually execute imported workflow', executeWorkflow);
 
     it('uninstall app', async function () {
         // ensure we don't hit NXDOMAIN in the mean time
@@ -256,7 +251,6 @@ console.log(2)
     it('can open created workflow', openWorkflow);
     it('can import workflow from URL', importWorkflowFromUrl);
     it('check if workflow created data', checkWorkflowData);
-    xit('can manually execute imported workflow', executeWorkflow);
 
     it('can update', function () { execSync(`cloudron update --app ${app.id}`, EXEC_ARGS); });
 
@@ -264,7 +258,6 @@ console.log(2)
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
     it('check if workflow creates data', checkWorkflowData.bind(null, '3'));
-    xit('can manually execute imported workflow', executeWorkflow);
 
     it('uninstall app', async function () {
         // ensure we don't hit NXDOMAIN in the mean time
