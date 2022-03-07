@@ -156,3 +156,6 @@
 [1.31.0]
 * Update n8n to 0.166.0
 
+[1.32.0]
+* Add pandoc and asciidoctor
+
