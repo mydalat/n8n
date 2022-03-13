@@ -7,7 +7,7 @@ RUN apt-get update && \
     apt-get -y install graphicsmagick recutils asciidoctor pandoc && \
     rm -rf /var/cache/apt /var/lib/apt/lists
 
-ARG N8N_VERSION=0.166.0
+ARG N8N_VERSION=0.167.0
 ARG NODE_VERSION=14.17.0
 
 # install node
