@@ -162,6 +162,6 @@
 [1.32.1]
 * Update n8n to 0.167.0
 
-[1.32.2]
+[2.0.0]
 * Update n8n to 0.168.2
-
+* Cloudron proxyAuth is removed, since n8n now has its own usermanagement. Make sure to create local users within n8n from now on to keep workflows private.
