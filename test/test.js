@@ -23,20 +23,18 @@ describe('Application life cycle test', function () {
     const LOCATION = 'test';
     const TEST_TIMEOUT = 10000;
     const EXEC_ARGS = { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' };
-    const username = process.env.USERNAME;
-    const password = process.env.PASSWORD;
+    const EMAIL = 'herbert@cloudron.io';
+    const PASSWORD = 'Something?123';
+    const FIRST_NAME = 'Herbert';
+    const LAST_NAME = 'Cloudroner';
     const workflow_file_url = 'https://git.cloudron.io/cloudron/n8n-app/-/raw/master/test/Cloudron_Test_Workflow.json';
     const default_workflow_name = 'Cloudron Test Workflow';
     const default_workflow_import_name = 'Cloudron Imported Workflow';
 
     let browser, app;
 
-    before(function (done) {
-        if (!process.env.PASSWORD) return done(new Error('PASSWORD env var not set'));
-        if (!process.env.USERNAME) return done(new Error('USERNAME env var not set'));
-
+    before(function () {
         browser = new Builder().forBrowser('chrome').setChromeOptions(new Options().windowSize({ width: 1280, height: 1024 })).build();
-        done();
     });
 
     after(function () {
@@ -59,18 +57,58 @@ describe('Application life cycle test', function () {
         expect(app).to.be.an('object');
     }
 
+    async function setup() {
+        await browser.get(`https://${app.fqdn}/setup`);
+
+        await waitForElement(By.xpath('//input[@autocomplete="email"]'));
+
+        await browser.findElement(By.xpath('//input[@autocomplete="email"]')).sendKeys(EMAIL);
+        await browser.findElement(By.xpath('//input[@autocomplete="given-name"]')).sendKeys(FIRST_NAME);
+        await browser.findElement(By.xpath('//input[@autocomplete="family-name"]')).sendKeys(LAST_NAME);
+        await browser.findElement(By.xpath('//input[@autocomplete="new-password"]')).sendKeys(PASSWORD);
+        await browser.findElement(By.xpath('//button[@title="Next"]')).click();
+
+        // initials from FIRST_NAME and LAST_NAME
+        await waitForElement(By.xpath('//div[@class="avatar"]//span[text()="HC"]'));
+    }
+
     async function login() {
+        await browser.get(`https://${app.fqdn}/signin`);
+
+        await waitForElement(By.xpath('//input[@autocomplete="email"]'));
+
+        await browser.findElement(By.xpath('//input[@autocomplete="email"]')).sendKeys(EMAIL);
+        await browser.findElement(By.xpath('//input[@autocomplete="current-password"]')).sendKeys(PASSWORD);
+        await browser.findElement(By.xpath('//button[@title="Sign in"]')).click();
+
+        await waitForElement(By.xpath('//div[@class="avatar"]//span[text()="HC"]'));
+    }
+
+    async function loginOld() {
         await browser.get(`https://${app.fqdn}/login`);
 
         await waitForElement(By.id('inputUsername'));
 
-        await browser.findElement(By.id('inputUsername')).sendKeys(username);
-        await browser.findElement(By.id('inputPassword')).sendKeys(password);
+        await browser.findElement(By.id('inputUsername')).sendKeys(process.env.USERNAME);
+        await browser.findElement(By.id('inputPassword')).sendKeys(process.env.PASSWORD);
         await browser.findElement(By.id('login')).click();
 
         await sleep(2000);
 
         await waitForElement(By.id('app'));
+    }
+
+
+    async function logout() {
+        await browser.get(`https://${app.fqdn}`);
+
+        await waitForElement(By.xpath('//div[@class="avatar"]//span[text()="HC"]'));
+        await browser.findElement(By.xpath('//div[@class="avatar"]//span[text()="HC"]')).click();
+
+        await waitForElement(By.xpath('//li[contains(text(), "Sign out")]'));
+        await browser.findElement(By.xpath('//li[contains(text(), "Sign out")]')).click();
+
+        await waitForElement(By.xpath('//input[@autocomplete="email"]'));
     }
 
     const saveButtonXpath = '//li[@title="Workflow"]//span[text()="Save"]';
@@ -199,17 +237,19 @@ describe('Application life cycle test', function () {
     it('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
 
     it('can get app information', getAppInfo);
-    it('can login', login);
+    it('can setup', setup);
     it('can create workflow', createWorkflow);
     it('can open created workflow', openWorkflow);
     it('can import workflow from URL', importWorkflowFromUrl);
     it('check if workflow created data', checkWorkflowData);
+    it('can logout', logout);
 
     it('can restart app', function () { execSync(`cloudron restart --app ${app.id}`, EXEC_ARGS); });
     it('can login', login);
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
     it('check if workflow creates data', checkWorkflowData.bind(null, '3'));
+    it('can logout', logout);
 
     it('backup app', function () { execSync(`cloudron backup create --app ${app.id}`, EXEC_ARGS); });
     it('restore app', function () {
@@ -224,6 +264,7 @@ describe('Application life cycle test', function () {
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
     it('check if workflow creates data', checkWorkflowData.bind(null, '5'));
+    it('can logout', logout);
 
     it('move to different location', async function () {
         // ensure we don't hit NXDOMAIN in the mean time
@@ -246,7 +287,7 @@ describe('Application life cycle test', function () {
     // test update
     it('can install app', function () { execSync(`cloudron install --appstore-id ${app.manifest.id} --location ${LOCATION}`, EXEC_ARGS); });
     it('can get app information', getAppInfo);
-    it('can login', login);
+    it('can login', loginOld);
     it('can create workflow', createWorkflow);
     it('can open created workflow', openWorkflow);
     it('can import workflow from URL', importWorkflowFromUrl);
@@ -254,7 +295,18 @@ describe('Application life cycle test', function () {
 
     it('can update', function () { execSync(`cloudron update --app ${app.id}`, EXEC_ARGS); });
 
-    it('can login', login);
+    it('skip setup for now', async function () {
+        await browser.get(`https://${app.fqdn}`);
+
+        await waitForElement(By.xpath('//span[contains(text()," Skip setup for now ")]'));
+        await browser.findElement(By.xpath('//span[contains(text()," Skip setup for now ")]')).click();
+
+        await waitForElement(By.xpath('//button//span[contains(text(), "Skip setup")]'));
+        await browser.findElement(By.xpath('//button//span[contains(text(), "Skip setup")]')).click();
+
+        await browser.sleep(2000);
+    });
+    // it('can login', login);
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
     it('check if workflow creates data', checkWorkflowData.bind(null, '3'));
