@@ -84,21 +84,6 @@ describe('Application life cycle test', function () {
         await waitForElement(By.xpath('//div[@class="avatar"]//span[text()="HC"]'));
     }
 
-    async function loginOld() {
-        await browser.get(`https://${app.fqdn}/login`);
-
-        await waitForElement(By.id('inputUsername'));
-
-        await browser.findElement(By.id('inputUsername')).sendKeys(process.env.USERNAME);
-        await browser.findElement(By.id('inputPassword')).sendKeys(process.env.PASSWORD);
-        await browser.findElement(By.id('login')).click();
-
-        await sleep(2000);
-
-        await waitForElement(By.id('app'));
-    }
-
-
     async function logout() {
         await browser.get(`https://${app.fqdn}`);
 
@@ -287,26 +272,16 @@ describe('Application life cycle test', function () {
     // test update
     it('can install app', function () { execSync(`cloudron install --appstore-id ${app.manifest.id} --location ${LOCATION}`, EXEC_ARGS); });
     it('can get app information', getAppInfo);
-    it('can login', loginOld);
+    it('can setup', setup);
     it('can create workflow', createWorkflow);
     it('can open created workflow', openWorkflow);
     it('can import workflow from URL', importWorkflowFromUrl);
     it('check if workflow created data', checkWorkflowData);
+    it('can logout', logout);
 
     it('can update', function () { execSync(`cloudron update --app ${app.id}`, EXEC_ARGS); });
 
-    it('skip setup for now', async function () {
-        await browser.get(`https://${app.fqdn}`);
-
-        await waitForElement(By.xpath('//span[contains(text()," Skip setup for now ")]'));
-        await browser.findElement(By.xpath('//span[contains(text()," Skip setup for now ")]')).click();
-
-        await waitForElement(By.xpath('//button//span[contains(text(), "Skip setup")]'));
-        await browser.findElement(By.xpath('//button//span[contains(text(), "Skip setup")]')).click();
-
-        await browser.sleep(2000);
-    });
-    // it('can login', login);
+    it('can login', login);
     it('can open created workflow', openWorkflow.bind(null, default_workflow_name));
     it('can open imported workflow', openWorkflow.bind(null, default_workflow_import_name));
     it('check if workflow creates data', checkWorkflowData.bind(null, '3'));
