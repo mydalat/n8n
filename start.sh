@@ -21,6 +21,14 @@ export N8N_CUSTOM_EXTENSIONS="/app/data/custom-extensions"
 export N8N_USER_FOLDER="/app/data/user" # always uses .n8n underneath
 export N8N_CONFIG_FILES="/app/data/configs/default.json"
 export N8N_LOG_OUTPUT="console"
+export N8N_EMAIL_MODE="smtp"
+export N8N_SMTP_HOST="${CLOUDRON_MAIL_SMTP_SERVER}"
+export N8N_SMTP_PORT="${CLOUDRON_MAIL_SMTP_PORT}"
+export N8N_SMTP_USER="${CLOUDRON_MAIL_SMTP_USERNAME}"
+export N8N_SMTP_PASS="${CLOUDRON_MAIL_SMTP_PASSWORD}"
+export N8N_SMTP_SENDER="${CLOUDRON_MAIL_FROM}"
+export N8N_SMTP_SSL=false
+
 [[ ! -f "/app/data/env" ]] && cp /app/pkg/sample.env /app/data/env
 source /app/data/env
 

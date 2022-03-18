@@ -10,7 +10,8 @@
   "httpPort": 5678,
   "addons": {
     "localstorage": {},
-    "postgresql": {}
+    "postgresql": {},
+    "sendmail": {}
   },
   "manifestVersion": 2,
   "memoryLimit": 536870912,
