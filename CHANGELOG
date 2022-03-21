@@ -169,3 +169,6 @@
 [2.0.1]
 * Integrate with Cloudron's email sending addon
 
+[2.1.0]
+* Update n8n to 0.169.0
+
