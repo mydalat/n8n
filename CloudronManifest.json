@@ -4,8 +4,8 @@
   "author": "n8n GmbH",
   "description": "file://DESCRIPTION.md",
   "tagline": "Free and Open Workflow Automation Tool",
-  "version": "2.1.0",
-  "upstreamVersion": "0.169.0",
+  "version": "2.2.0",
+  "upstreamVersion": "0.170.0",
   "healthCheckPath": "/",
   "httpPort": 5678,
   "addons": {
