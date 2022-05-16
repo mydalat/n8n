@@ -1,3 +1,5 @@
+### About
+
 n8n is an extendable workflow automation tool. n8n's node-based approach makes it highly versatile, enabling you to connect anything to everything.
 
 ### Available integrations
