@@ -22,6 +22,11 @@ RUN npm install n8n@${N8N_VERSION}  && \
 # npm config set cache --global /run/npmcache
 RUN rm -rf /root/.npm && ln -s /run/npmcache /root/.npm
 
+# this allows to use the CLI easily without having to set these
+ENV N8N_USER_FOLDER="/app/data/user"
+ENV N8N_CONFIG_FILES="/app/data/configs/default.json"
+ENV N8N_CUSTOM_EXTENSIONS="/app/data/custom-extensions"
+
 COPY start.sh sample.env /app/pkg/
 
 CMD [ "/app/pkg/start.sh" ]

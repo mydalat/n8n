@@ -17,9 +17,10 @@ export VUE_APP_URL_BASE_API="${CLOUDRON_APP_ORIGIN}/"
 export WEBHOOK_TUNNEL_URL="${CLOUDRON_APP_ORIGIN}/"
 export N8N_VERSION_NOTIFICATIONS_ENABLED=false
 export N8N_DIAGNOSTICS_ENABLED=false
-export N8N_CUSTOM_EXTENSIONS="/app/data/custom-extensions"
-export N8N_USER_FOLDER="/app/data/user" # always uses .n8n underneath
-export N8N_CONFIG_FILES="/app/data/configs/default.json"
+# already set in Dockerfile
+# export N8N_CUSTOM_EXTENSIONS="/app/data/custom-extensions"
+# export N8N_USER_FOLDER="/app/data/user" # always uses .n8n underneath
+# export N8N_CONFIG_FILES="/app/data/configs/default.json"
 export N8N_LOG_OUTPUT="console"
 export N8N_EMAIL_MODE="smtp"
 export N8N_SMTP_HOST="${CLOUDRON_MAIL_SMTP_SERVER}"
