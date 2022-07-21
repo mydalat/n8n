@@ -66,7 +66,7 @@ describe('Application life cycle test', function () {
         await browser.findElement(By.xpath('//input[@autocomplete="given-name"]')).sendKeys(FIRST_NAME);
         await browser.findElement(By.xpath('//input[@autocomplete="family-name"]')).sendKeys(LAST_NAME);
         await browser.findElement(By.xpath('//input[@autocomplete="new-password"]')).sendKeys(PASSWORD);
-        await browser.findElement(By.xpath('//button[@title="Next"]')).click();
+        await browser.findElement(By.xpath('//button//span[contains(text(), "Next")]')).click();
 
         // initials from FIRST_NAME and LAST_NAME
         await waitForElement(By.xpath('//div[@class="avatar"]//span[text()="HC"]'));
@@ -79,7 +79,7 @@ describe('Application life cycle test', function () {
 
         await browser.findElement(By.xpath('//input[@autocomplete="email"]')).sendKeys(EMAIL);
         await browser.findElement(By.xpath('//input[@autocomplete="current-password"]')).sendKeys(PASSWORD);
-        await browser.findElement(By.xpath('//button[@title="Sign in"]')).click();
+        await browser.findElement(By.xpath('//button//span[contains(text(), "Sign in")]')).click();
 
         await waitForElement(By.xpath('//div[@class="avatar"]//span[text()="HC"]'));
     }
