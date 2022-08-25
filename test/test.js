@@ -202,12 +202,12 @@ describe('Application life cycle test', function () {
 
     async function checkWorkflowData(execNumber='1') {
         await openMenu();
-        console.log(`Sleeping for one minute to let the imported workflow generate some data in execution ${execNumber} . ${(new Date()).toString()}`);
-        await sleep(70000);
+        console.log(`Sleeping for 15sec to let the imported workflow generate some data in execution ${execNumber} . ${(new Date()).toString()}`);
+        await sleep(15000);
         await waitForElement(By.xpath('//li/span[text()="Executions"]'));
         await browser.findElement(By.xpath('//li/span[text()="Executions"]')).click();
-        await sleep(2000);
         // Find Name of workflow
+        await waitForElement(By.xpath(`//span[@class="workflow-name"][contains(text(), '${default_workflow_import_name}')]`));
         await browser.findElement(By.xpath(`//span[@class="workflow-name"][contains(text(), '${default_workflow_import_name}')]`));
         // Find Sucess label
         await browser.findElement(By.xpath('//span[contains(text(), "Success")]'));

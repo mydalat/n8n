@@ -26,7 +26,8 @@
         "triggerTimes": {
           "item": [
             {
-              "mode": "everyMinute"
+              "mode": "custom",
+              "cronExpression": "*/10 * * * * *"
             }
           ]
         }
