@@ -5,7 +5,7 @@
   "description": "file://DESCRIPTION.md",
   "tagline": "Free and Open Workflow Automation Tool",
   "version": "2.8.22",
-  "upstreamVersion": "0.195.2",
+  "upstreamVersion": "0.195.3",
   "healthCheckPath": "/",
   "httpPort": 5678,
   "addons": {

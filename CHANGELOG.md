@@ -300,5 +300,5 @@
 * Update n8n to 0.194.0
 
 [2.8.22]
-* Update n8n to 0.195.2
+* Update n8n to 0.195.3
 
