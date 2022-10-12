@@ -7,7 +7,7 @@ RUN apt-get update && \
     apt-get -y install graphicsmagick recutils asciidoctor pandoc && \
     rm -rf /var/cache/apt /var/lib/apt/lists
 
-ARG N8N_VERSION=0.196.0
+ARG N8N_VERSION=0.197.1
 ARG NODE_VERSION=16.15.0
 
 # install node
@@ -21,6 +21,8 @@ RUN npm install n8n@${N8N_VERSION}  && \
 
 # npm config set cache --global /run/npmcache
 RUN rm -rf /root/.npm && ln -s /run/npmcache /root/.npm
+RUN rm -rf /home/cloudron/.cache && ln -s /run/cloudron.cache /home/cloudron/.cache
+RUN rm -rf /app/code/node_modules/n8n/dist/public && ln -s /run/public /app/code/node_modules/n8n/dist/public
 
 # this allows to use the CLI easily without having to set these
 ENV N8N_USER_FOLDER="/app/data/user"

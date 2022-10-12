@@ -3,7 +3,7 @@
 set -eu
 
 echo "=> Ensure directories"
-mkdir -p /run/npmcache /app/data/user/.n8n /app/data/custom-extensions /app/data/configs
+mkdir -p /run/npmcache /app/data/user/.n8n /app/data/custom-extensions /app/data/configs /run/cloudron.cache /run/public
 
 # unused path
 rm -rf /app/data/modules
@@ -43,7 +43,7 @@ cat $config_file | \
     > /tmp/app-config.json && mv /tmp/app-config.json $config_file
 
 echo "=> Setting permissions"
-chown -R cloudron:cloudron /app/data
+chown -R cloudron:cloudron /app/data /run
 
 echo "=> Starting N8N"
 exec gosu cloudron:cloudron /app/code/node_modules/.bin/n8n start

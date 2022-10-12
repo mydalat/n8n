@@ -309,5 +309,5 @@
 * Update n8n to 0.195.5
 
 [2.9.0]
-* Update n8n to 0.196.0
+* Update n8n to 0.197.1
 
