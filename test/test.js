@@ -104,7 +104,7 @@ describe('Application life cycle test', function () {
     const saveButtonXpath = '//span[@class="actions"]//span[text()="Save"]';
 
     async function createWorkflow() {
-        await browser.get(`https://${app.fqdn}/workflow`);
+        await browser.get(`https://${app.fqdn}/workflow/new`);
 
         // click workflow name
         await waitForElement(By.xpath('//span[@class="name-container"]'));
@@ -149,7 +149,7 @@ describe('Application life cycle test', function () {
     }
 
     async function importWorkflowFromUrl() {
-        await browser.get(`https://${app.fqdn}/workflow`);
+        await browser.get(`https://${app.fqdn}/workflow/new`);
 
         await waitForElement(By.xpath('//span[@class="actions"]//div[@class="action-dropdown-container"]/div/div'));
         await browser.findElement(By.xpath('//span[@class="actions"]//div[@class="action-dropdown-container"]/div/div')).click();
