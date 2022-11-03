@@ -187,7 +187,10 @@ describe('Application life cycle test', function () {
 
     async function checkWorkflowData(execNumber='1') {
         console.log(`Sleeping for 15sec to let the imported workflow generate some data in execution ${execNumber} . ${(new Date()).toString()}`);
-        await sleep(20000);
+        await sleep(15000);
+
+        await browser.get(`https://${app.fqdn}`);
+
         await waitForElement(By.xpath('//li/span[text()="Executions"]'));
         await browser.findElement(By.xpath('//li/span[text()="Executions"]')).click();
         // Find Name of workflow
