@@ -329,3 +329,6 @@
 [2.14.0]
 * Update n8n to 0.201.0
 
+[2.14.1]
+* Fix formatting of display name
+
