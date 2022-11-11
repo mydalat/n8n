@@ -332,3 +332,6 @@
 [2.14.1]
 * Fix formatting of display name
 
+[2.15.0]
+* Update n8n to 0.202.1
+
