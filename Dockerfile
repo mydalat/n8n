@@ -21,6 +21,7 @@ RUN npm install n8n@${N8N_VERSION}  && \
 
 # npm config set cache --global /run/npmcache
 RUN rm -rf /root/.npm && ln -s /run/npmcache /root/.npm
+RUN rm -rf /home/cloudron/.npm && ln -s /run/npmcache /home/cloudron/.npm
 RUN rm -rf /home/cloudron/.cache && ln -s /run/cloudron.cache /home/cloudron/.cache
 RUN rm -rf /app/code/node_modules/n8n/dist/public && ln -s /run/public /app/code/node_modules/n8n/dist/public
 
