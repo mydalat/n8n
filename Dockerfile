@@ -17,7 +17,7 @@ ENV PATH="/usr/local/node-${NODE_VERSION}/bin:$PATH"
 
 # n8n. handlebars and jsonata are just helpful modules that user can enable
 RUN npm install n8n@${N8N_VERSION}  && \
-    npm install handlebars jsonata marked bwip-js
+    npm install handlebars jsonata marked bwip-js ajv-formats
 
 # npm config set cache --global /run/npmcache
 RUN rm -rf /root/.npm && ln -s /run/npmcache /root/.npm
