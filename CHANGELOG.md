@@ -344,3 +344,7 @@
 [2.16.2]
 * Fix installation of community modules
 * Add ajv-formats module
+
+[2.17.0]
+* Update n8n to 0.204.0
+
