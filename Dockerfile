@@ -7,13 +7,7 @@ RUN apt-get update && \
     apt-get -y install graphicsmagick recutils asciidoctor pandoc && \
     rm -rf /var/cache/apt /var/lib/apt/lists
 
-ARG N8N_VERSION=0.208.0
-ARG NODE_VERSION=16.15.0
-
-# install node
-RUN mkdir -p /usr/local/node-${NODE_VERSION} && \
-    curl -L https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz | tar zxf - --strip-components 1 -C /usr/local/node-${NODE_VERSION}
-ENV PATH="/usr/local/node-${NODE_VERSION}/bin:$PATH"
+ARG N8N_VERSION=0.208.1
 
 # n8n. handlebars and jsonata are just helpful modules that user can enable
 RUN npm install n8n@${N8N_VERSION}  && \
