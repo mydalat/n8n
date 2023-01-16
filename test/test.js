@@ -187,7 +187,7 @@ describe('Application life cycle test', function () {
 
     async function checkWorkflowData(execNumber='1') {
         console.log(`Sleeping for 15sec to let the imported workflow generate some data in execution ${execNumber} . ${(new Date()).toString()}`);
-        await sleep(15000);
+        await sleep(30000);
 
         await browser.get(`https://${app.fqdn}`);
 
