@@ -385,5 +385,5 @@
 * Update n8n to 0.210.1
 
 [2.24.0]
-* Update n8n to 0.211.0
+* Update n8n to 0.211.1
 
