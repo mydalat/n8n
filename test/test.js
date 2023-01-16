@@ -186,21 +186,17 @@ describe('Application life cycle test', function () {
     }
 
     async function checkWorkflowData(execNumber='1') {
-        console.log(`Sleeping for 15sec to let the imported workflow generate some data in execution ${execNumber} . ${(new Date()).toString()}`);
+        console.log(`Sleeping for 30sec to let the imported workflow generate some data in execution ${execNumber} . ${(new Date()).toString()}`);
         await sleep(30000);
 
         await browser.get(`https://${app.fqdn}`);
 
-        await waitForElement(By.xpath('//li/span[text()="Executions"]'));
-        await browser.findElement(By.xpath('//li/span[text()="Executions"]')).click();
+        await waitForElement(By.xpath('//li/span[text()="All executions"]'));
+        await browser.findElement(By.xpath('//li/span[text()="All executions"]')).click();
         // Find Name of workflow
-        await waitForElement(By.xpath(`//span[@class="workflow-name"][contains(text(), '${default_workflow_import_name}')]`));
-        await browser.findElement(By.xpath(`//span[@class="workflow-name"][contains(text(), '${default_workflow_import_name}')]`));
+        await waitForElement(By.xpath(`//td/span[contains(text(), '${default_workflow_import_name}')]`));
         // Find Sucess label
-        await browser.findElement(By.xpath('//span[contains(text(), "Success")]'));
-        // Open first execution
-        await browser.get(`https://${app.fqdn}/execution/${execNumber}`);
-        await sleep(5000);
+        await browser.findElement(By.xpath('//span[contains(text(), "Succeeded")]'));
     }
 
     // TEST START
