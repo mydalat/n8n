@@ -7,7 +7,7 @@ RUN apt-get update && \
     apt-get -y install graphicsmagick recutils asciidoctor pandoc && \
     rm -rf /var/cache/apt /var/lib/apt/lists
 
-ARG N8N_VERSION=0.214.3
+ARG N8N_VERSION=0.215.0
 
 # n8n. handlebars and jsonata are just helpful modules that user can enable
 RUN npm install n8n@${N8N_VERSION}  && \
