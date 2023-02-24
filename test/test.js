@@ -109,6 +109,7 @@ describe('Application life cycle test', function () {
         // click workflow name
         await waitForElement(By.xpath('//span[@class="name-container"]'));
         await browser.findElement(By.xpath('//span[@class="name-container"]')).click();
+
         // Clear the field
         await waitForElement(By.xpath('//span[@class="name-container"]//input'));
         await browser.findElement(By.xpath('//span[@class="name-container"]//input')).clear();
@@ -119,14 +120,16 @@ describe('Application life cycle test', function () {
         // Add CoinGecko Node
         await waitForElement(By.xpath('//button[@title="Add node"]'));
         await browser.findElement(By.xpath('//button[@title="Add node"]')).click();
-        await waitForElement(By.id('tab-All'));
-        await browser.findElement(By.id('tab-All')).click();
 
         await waitForElement(By.xpath('//input[@placeholder="Search nodes..."]'));
         await browser.findElement(By.xpath('//input[@placeholder="Search nodes..."]')).sendKeys('CoinGecko');
         // Click CoinGecko Node
         await waitForElement(By.xpath('//span[contains(text(), "CoinGecko")]'));
         await browser.findElement(By.xpath('//span[contains(text(), "CoinGecko")]')).click();
+
+        await waitForElement(By.xpath('//span[text()="Get the price for a coin"]'));
+        await browser.findElement(By.xpath('//span[text()="Get the price for a coin"]')).click();
+
         // Close node config window
         await waitForElement(By.xpath('//html/body'));
         await browser.findElement(By.xpath('//html/body')).sendKeys(Key.ESCAPE); // clicking "close" button says element not interactible
