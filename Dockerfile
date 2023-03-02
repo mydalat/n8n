@@ -24,6 +24,6 @@ ENV N8N_USER_FOLDER="/app/data/user"
 ENV N8N_CONFIG_FILES="/app/data/configs/default.json"
 ENV N8N_CUSTOM_EXTENSIONS="/app/data/custom-extensions"
 
-COPY start.sh sample.env /app/pkg/
+COPY start.sh env.sh.template /app/pkg/
 
 CMD [ "/app/pkg/start.sh" ]

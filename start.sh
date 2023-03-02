@@ -30,8 +30,9 @@ export N8N_SMTP_PASS="${CLOUDRON_MAIL_SMTP_PASSWORD}"
 export N8N_SMTP_SENDER="${CLOUDRON_MAIL_FROM_DISPLAY_NAME:-N8N} <${CLOUDRON_MAIL_FROM}>"
 export N8N_SMTP_SSL=false
 
-[[ ! -f "/app/data/env" ]] && cp /app/pkg/sample.env /app/data/env
-source /app/data/env
+[[ -f /app/data/env ]] && mv /app/data/env /app/data/env.sh
+[[ ! -f "/app/data/env.sh" ]] && cp /app/pkg/env.sh.template /app/data/env.sh
+source /app/data/env.sh
 
 cat $config_file | \
     jq '.database.type="postgresdb"' | \
