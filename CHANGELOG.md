@@ -432,3 +432,6 @@
 [2.30.1]
 * Update n8n to 0.217.1
 
+[2.31.0]
+* Rename env to env.sh
+
