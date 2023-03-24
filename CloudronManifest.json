@@ -17,7 +17,7 @@
   "memoryLimit": 536870912,
   "website": "https://n8n.io",
   "contactEmail": "support@clourdon.io",
-  "tags": [ "automation" ],
+  "tags": [ "automation", "no-code", "nocode", "zapier" ],
   "changelog": "file://CHANGELOG.md",
   "documentationUrl": "https://docs.cloudron.io/apps/n8n/",
   "minBoxVersion": "7.3.2",
