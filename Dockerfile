@@ -11,7 +11,7 @@ ARG N8N_VERSION=0.221.2
 
 # n8n. handlebars and jsonata are just helpful modules that user can enable
 RUN npm install n8n@${N8N_VERSION}  && \
-    npm install handlebars jsonata marked bwip-js ajv-formats odoo-xmlrpc
+    npm install handlebars@4.7.7 jsonata@2.0.2 marked@4.3.0 bwip-js@3.3.0 ajv-formats@2.1.1 odoo-xmlrpc@1.0.8
 
 # npm config set cache --global /run/npmcache
 RUN rm -rf /root/.npm && ln -s /run/npmcache /root/.npm
