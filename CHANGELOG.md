@@ -462,3 +462,6 @@
 [2.35.0]
 * Add odoo-xmlrpc
 
+[2.36.0]
+* Update n8n to 0.222.0
+
