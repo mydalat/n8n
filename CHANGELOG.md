@@ -463,5 +463,20 @@
 * Add odoo-xmlrpc
 
 [2.36.0]
-* Update n8n to 0.222.0
+* Update n8n to 0.222.1
+* AWS SNS Node: Fix an issue with messages failing to send if they contain certain characters (#5807) (f0954b9)
+* core: augmentObject should clone Buffer/Uint8Array instead of wrapping them in a proxy (#5902) (a877b02)
+* core: augmentObject should use existing property descriptors whenever possible (#5872) (b1ee8f4)
+* core: Fix the issue of nodes not loading when run via npx (#5888) (163446c)
+* core: Improve axios error handling in nodes (#5891) (f0a51a0)
+* core: Password reset should pass in the correct values to external hooks (#5842) (3bf267c)
+* core: Prevent augmentObject from creating infinitely deep proxies (#5893) (6906b00), closes #5848
+* core: Use table-prefixes in queries in import commands (#5887) (de58fb9)
+* editor: Fix focused state in Code node editor (#5869) (3be37e2)
+* editor: Fix loading executions in long execution list (#5843) (d5d9f58)
+* editor: Show correct status on canceled executions (#5813) (00181cd)
+* Gmail Node: Gmail luxon object support, fix for timestamp (695fabb)
+* HTTP Request Node: Detect mime-type from streaming responses (#5896) (0be1292)
+* HubSpot Trigger Node: Developer API key is required for webhooks (918c79c)
+* Set Node: Convert string to number (72eea0d)
 
