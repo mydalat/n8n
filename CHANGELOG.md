@@ -541,3 +541,18 @@
 * ServiceNow Node: Add support for work notes when updating an incident (#5791) (1409f5d)
 * SSH Node: Hide the private key within the ssh credential (#5871) (d877361)
 
+[2.38.0]
+* Update n8n to 0.224.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.224.0)
+* Code Node: Update vm2 to address CVE-2023-29017 (#5947) (f0eba0a)
+* core: App should not crash with a custom rest endpoint (#5911) (2881ee9), closes #5880
+* core: Do not execute workflowExecuteBefore hook when resuming executions from a waiting state (#5727) (6689451)
+* core: Fix issue where sub workflows would display as running forever after failure to start (#5905) (3e382ef)
+* core: Update xml2js to address CVE-2023-0842 (#5948) (3085ed9)
+* editor: Drop mergeDeep in favor of lodash merge (#5943) (0570514)
+* HTTP Request Node: Show detailed error message in the UI again (#5959) (e79679c)
+* Create TOTP node (#5901) (6cf74e4)
+* editor: Add user activation survey (#5677) (725393d)
+* editor: SAML login disables Invite button (#5922) (3fdc441)
+* editor: SAML paywall state (#5906) (d40e86a)
+
