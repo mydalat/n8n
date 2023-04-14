@@ -556,3 +556,9 @@
 * editor: SAML login disables Invite button (#5922) (3fdc441)
 * editor: SAML paywall state (#5906) (d40e86a)
 
+[2.38.1]
+* Update n8n to 0.224.1
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.224.1)
+* core: Fix broken API permissions in public API (#5978) (b76ab31)
+* editor: Only treat as CTRL pressed by default on touch devices for MouseEvent (#5968) (471be3b)
+
