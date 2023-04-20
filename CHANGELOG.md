@@ -591,3 +591,11 @@
 * GitLab Node: Add Additional parameters for File List (#5621) (3810039)
 * MySQL Node: Overhaul (0a53c95)
 
+[2.39.1]
+* Update n8n to 0.225.1
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.225.1)
+* editor: Clean up demo and template callouts from workflows page (#6023) (6ec1c45)
+* editor: Fix memory leak in Node Detail View by correctly unsubscribing from event buses (#6021) (1b9e047)
+* editor: SettingsSidebar should disconnect from push when navigating away (#6025) (e9f8cfe)
+* Notion Node: Update credential test to not require user permissions (#6022) (6d02ae5)
+
