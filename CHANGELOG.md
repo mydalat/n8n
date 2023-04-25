@@ -599,3 +599,9 @@
 * editor: SettingsSidebar should disconnect from push when navigating away (#6025) (e9f8cfe)
 * Notion Node: Update credential test to not require user permissions (#6022) (6d02ae5)
 
+[2.39.2]
+* Update n8n to 0.225.2
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.225.2)
+* core: Upgrade google-timezones-json to use the correct timezone for Sao Paulo (#6042) (f93fd5a), closes #2647
+* Code Node: Update vm2 to address CVE-2023-30547 (#6039) (f1ca4e2)
+
