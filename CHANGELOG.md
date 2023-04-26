@@ -605,3 +605,18 @@
 * core: Upgrade google-timezones-json to use the correct timezone for Sao Paulo (#6042) (f93fd5a), closes #2647
 * Code Node: Update vm2 to address CVE-2023-30547 (#6039) (f1ca4e2)
 
+[2.40.0]
+* Update n8n to 0.226.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.226.0)
+* core: Add license:info command (#6047) (ab12d3e)
+* core: Add SSH key generation (#6006) (71ed1f4)
+* core: Add support for digestAuth to httpRequest and declarative style (#5676) (62f993c)
+* core: Manage version control settings (#6079) (f3b4701)
+* core: Upgrade google-timezones-json to use the correct timezone for Sao Paulo (#6042) (b8cb5d7), closes #2647
+* editor: Add disable template experiment (#5963) (a74284b)
+* editor: Add SQL editor support (#5517) (70aaf24)
+* editor: Enhance Node Creator actions view (#5954) (390841b)
+* editor: Version control (WIP) (#6013) (0e0a064)
+* editor: Version control paywall (WIP) (#6030) (ef79b03)
+* Google BigQuery Node: Node improvements (#4877) (9817a15)
+
