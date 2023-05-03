@@ -649,3 +649,8 @@
 * Prevent displaying an endless timer in the execution list for finished executions (#6137) (2672896)
 * Slack Node: Restore ability to send text in addition of blocks or attachments (625d672)
 
+[2.40.2]
+* Update n8n to 0.226.2
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.226.2)
+* core: Fix bug running addUserActivatedColumn migration on MariaDB (#6157) (aa8e96d)
+
