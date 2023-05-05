@@ -654,3 +654,11 @@
 * [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.226.2)
 * core: Fix bug running addUserActivatedColumn migration on MariaDB (#6157) (aa8e96d)
 
+[2.41.0]
+* Update n8n to 0.227.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.227.0)
+* core: Account for nodes with renamable content (#6109) (c99f158)
+* core: Assign Unknown Error only if message or description not present in error (8aedc03)
+* core: Avoid using Object.keys on Buffer and other non-plain objects (#6131) (a3aba83)
+* core: Better error message in Webhook node when using the POST method (a0dd17e)
+* core: Better errors for common status codes fix (700cc39)
