@@ -662,3 +662,9 @@
 * core: Avoid using Object.keys on Buffer and other non-plain objects (#6131) (a3aba83)
 * core: Better error message in Webhook node when using the POST method (a0dd17e)
 * core: Better errors for common status codes fix (700cc39)
+
+[2.42.0]
+* Update n8n to 0.228.1
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.228.1)
+WIP
+
