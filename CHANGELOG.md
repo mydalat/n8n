@@ -666,5 +666,10 @@
 [2.42.0]
 * Update n8n to 0.228.1
 * [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.228.1)
-WIP
+
+[2.42.1]
+* Update n8n to 0.228.2
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.228.2)
+* Code Node: Restore help text (#6231) (6bf5c51)
+* core: Make sure that special polling parameters are available on community nodes as well (#6230) (49391a2)
 
