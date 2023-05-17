@@ -673,3 +673,19 @@
 * Code Node: Restore help text (#6231) (6bf5c51)
 * core: Make sure that special polling parameters are available on community nodes as well (#6230) (49391a2)
 
+[2.43.0]
+* Update n8n to 0.229.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.229.0)
+* Code Node: Restore help text (#6231) (e72d564)
+* core: Make sure that special polling parameters are available on community nodes as well (#6230) (9db49d0)
+* Remove workflow execution credential error message when instance owner (#6116) (e81a964)
+* core: Reduce the number of events sent to Sentry (#6235) (a4c0cc9)
+* core: Return OAuth2 error body if available (#5794) (79d0a0f)
+* editor: Add cloud ExecutionsUsage and API blocking using licenses (#6159) (cd7c312), closes #6187
+* editor: Add color picker design system component (#6179) (823e885)
+* editor: Drop support for legacy browsers that do not have native ESM support (#6239) (9182d15)
+* editor: Updating node reference pattern in expression editor (#6228) (13bcec1)
+* editor: Version Control settings update (WIP) (#6233) (0666377)
+* Google Ads Node: Update to support v13 (#6212) (bd1bffc)
+* Respond to Webhook Node: Move from Binary Buffer to Binary streaming (#5613) (8ae2d80)
+
