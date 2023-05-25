@@ -689,3 +689,15 @@
 * Google Ads Node: Update to support v13 (#6212) (bd1bffc)
 * Respond to Webhook Node: Move from Binary Buffer to Binary streaming (#5613) (8ae2d80)
 
+[2.44.0]
+* Update n8n to 0.230.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.230.0)
+* core: Remove all floating promises. Enforce @typescript-eslint/no-floating-promises (#6281) (e046f65)
+* core: Replace client-oauth2 with an in-repo package (#6266) (a1b1f24)
+* Execution Data Node: New node (#6247) (3f7c4f0)
+* Gotify Node: Add support for self signed certificates (#6053) (401cffd)
+* Ldap Node: Add LDAP node (#4783) (ec393bc)
+* LoneScale Node: Add LoneScale node and Trigger node (#5146) (4b85433)
+* RabbitMQ Node: Add mode for acknowledging and deleting from queue later in workflow (#6225) (f5950b2)
+* Send Email Node: Add content-id for email attachments (#3632) (8fe8aad)
+
