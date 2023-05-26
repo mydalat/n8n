@@ -701,3 +701,9 @@
 * RabbitMQ Node: Add mode for acknowledging and deleting from queue later in workflow (#6225) (f5950b2)
 * Send Email Node: Add content-id for email attachments (#3632) (8fe8aad)
 
+[2.44.1]
+* Update n8n to 0.230.1
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.230.1)
+* editor: Fix locale plularisation if count is 0 (#6312) (33b6b28)
+* Execute Command Node: Block executions when command is empty (#6308) (c8b88a1)
+
