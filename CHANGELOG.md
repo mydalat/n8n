@@ -707,3 +707,9 @@
 * editor: Fix locale plularisation if count is 0 (#6312) (33b6b28)
 * Execute Command Node: Block executions when command is empty (#6308) (c8b88a1)
 
+[2.44.2]
+* Update n8n to 0.230.2
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.230.2)
+* Code Node: Update vm2 to address CVE-2023-32313 (#6318) (4301127)
+* core: Optimize getSharedWorkflowIds query (#6314) (4269d3f)
+* core: Prevent prototype pollution on injectable services (#6309) (a4bff84)
