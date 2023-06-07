@@ -730,3 +730,9 @@
 * core: Add metadata (customdata) to event log (#6334) (792b1c1)
 * editor: Implement Resource Mapper component (#6207) (04cfa54), closes #5752 #5814
 
+[2.45.1]
+* Update n8n to 0.231.1
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.231.1)
+* editor: Fix an issue with connections breaking during renaming (#6358) (481ca36)
+* editor: Fix typing $ in inline expression field reloading node parameters form (#6374) (ff3c60a)
+
