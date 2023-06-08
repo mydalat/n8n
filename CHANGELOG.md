@@ -736,3 +736,11 @@
 * editor: Fix an issue with connections breaking during renaming (#6358) (481ca36)
 * editor: Fix typing $ in inline expression field reloading node parameters form (#6374) (ff3c60a)
 
+[2.46.0]
+* Update n8n to 0.232.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.232.0)
+* Crypto Node: Add support for hash and hmac on binary data (#6359) (406a405)
+* editor: Make WF name a link on /executions (#6354) (6ddf161)
+* New trigger PostgreSQL (#5495) (4488f93)
+* Version control mvp (#6271) (1b32141)
+
