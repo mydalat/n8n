@@ -14,6 +14,7 @@ require('chromedriver');
 const execSync = require('child_process').execSync,
     expect = require('expect.js'),
     path = require('path'),
+    timers = require('timers/promises'),
     { Builder, By, Key, until } = require('selenium-webdriver'),
     { Options } = require('selenium-webdriver/chrome');
 
@@ -39,12 +40,7 @@ describe('Application life cycle test', function () {
         browser.quit();
     });
 
-    function sleep(millis) {
-        return new Promise(resolve => setTimeout(resolve, millis));
-    }
-
     async function waitForElement(elem) {
-        await sleep(1000);
         await browser.wait(until.elementLocated(elem), TEST_TIMEOUT);
         await browser.wait(until.elementIsVisible(browser.findElement(elem)), TEST_TIMEOUT);
     }
@@ -88,7 +84,7 @@ describe('Application life cycle test', function () {
         // close sidebar
         await waitForElement(By.id('collapse-change-button'));
         await browser.findElement(By.id('collapse-change-button')).click();
-        await sleep(2000);
+        await timers.setTimeout(2000);
 
         await waitForElement(By.xpath('//span[text()="HC"]'));
         await browser.findElement(By.xpath('//span[text()="HC"]')).click();
@@ -109,7 +105,7 @@ describe('Application life cycle test', function () {
         await browser.findElement(By.xpath(`//h2[contains(text(), "My workflow")]`)).click();
 
         await waitForElement(By.xpath(`//span[@title="My workflow"]`));
-        await sleep(500);
+        await timers.setTimeout(500);
     }
 
     async function importWorkflowFromUrl() {
@@ -135,31 +131,26 @@ describe('Application life cycle test', function () {
         await browser.findElement(By.xpath('//div[@title="Activate workflow"] | //div[@title="Activate Workflow"]')).click();
 
         // wait for saving
-        await sleep(1000);
+        await timers.setTimeout(1000);
     }
 
     async function checkWorkflowData(execNumber='1') {
         console.log(`Sleeping for 30sec to let the imported workflow generate some data in execution ${execNumber} . ${(new Date()).toString()}`);
-        await sleep(30000);
+        await timers.setTimeout(30000);
 
-        await browser.get(`https://${app.fqdn}`);
+        await browser.get(`https://${app.fqdn}/executions`);
+        await waitForElement(By.xpath('//h1[text()="Executions"]'));
 
-        await waitForElement(By.xpath('//li/span[text()="All executions"]'));
-        await browser.findElement(By.xpath('//li/span[text()="All executions"]')).click();
-        // Find Name of workflow
-        await waitForElement(By.xpath(`//td/span[contains(text(), '${'My workflow'}')]`));
-        // Find Sucess label
+        await waitForElement(By.xpath(`//td/span/a[contains(text(), '${'My workflow'}')]`));
         await browser.findElement(By.xpath('//span[contains(text(), "Succeeded")]'));
     }
-
-    // TEST START
 
     xit('build app', function () { execSync('cloudron build', EXEC_ARGS); });
     it('install app', function () { execSync(`cloudron install --location ${LOCATION}`, EXEC_ARGS); });
 
     it('can get app information', getAppInfo);
     it('can setup', setup);
-    // it('can login', login);
+//    it('can login', login);
     it('can import workflow from URL', importWorkflowFromUrl);
     it('check if workflow created data', checkWorkflowData);
     it('can logout', logout);
