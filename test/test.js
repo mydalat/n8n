@@ -41,6 +41,7 @@ describe('Application life cycle test', function () {
     });
 
     async function waitForElement(elem) {
+        await timers.setTimeout(2000);
         await browser.wait(until.elementLocated(elem), TEST_TIMEOUT);
         await browser.wait(until.elementIsVisible(browser.findElement(elem)), TEST_TIMEOUT);
     }
