@@ -744,3 +744,10 @@
 * New trigger PostgreSQL (#5495) (4488f93)
 * Version control mvp (#6271) (1b32141)
 
+[2.47.0]
+* Update n8n to 0.233.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.233.0)
+* core: Allow all executions to be stopped (#6386) (cc44af9)
+* core: Prevent arbitrary code execution via expressions (#6420) (da7ae2b)
+* editor: Hide version control main menu component if no feature flag (#6419) (75c0ab0)
+
