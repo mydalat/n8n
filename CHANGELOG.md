@@ -756,3 +756,17 @@
 * [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.233.1)
 * Fix the url sent in the password-reset emails (#6466) (85300fc)
 
+[2.48.0]
+* Update n8n to 0.234.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@0.234.0)
+* Add support for large files with declarative nodes (#6461) (e0f109f)
+* AwsS3 Node: Small overhaul of the node with multipart uploading (#6017) (109442f)
+* core: Add GET /users endpoints to public API (#6360) (6ab3502)
+* core: Add PKCE for OAuth2 (#6324) (fc7261a)
+* DebugHelper Node: Fix and include in main app (#6406) (18f5884)
+* Gmail Node: Add reply to email (#6453) (fddc69e)
+* Item Lists Node: Improvements (#6190) (1dbca44)
+* Migrate integer primary keys to nanoids (#6345) (c3ba012), closes #6323
+* Stripe Trigger Node: Add action required trigger for payment intents (#6490) (f2154fb)
+* Webhook Node: Stream binary response in lastNode.firstEntryBinary mode (#6463) (6ccab3e)
+
