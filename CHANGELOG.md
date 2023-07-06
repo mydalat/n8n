@@ -771,7 +771,7 @@
 * Webhook Node: Stream binary response in lastNode.firstEntryBinary mode (#6463) (6ccab3e)
 
 [2.49.0]
-* Update n8n to 1.0.0
+* Update n8n to 1.0.1
 * [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.0.0)
 * core Docker containers now run as the user node instead of root (#6365) (f636616)
 * core Drop debian and rhel7 images (#6365) (f636616)
