@@ -770,8 +770,9 @@
 * Stripe Trigger Node: Add action required trigger for payment intents (#6490) (f2154fb)
 * Webhook Node: Stream binary response in lastNode.firstEntryBinary mode (#6463) (6ccab3e)
 
-[2.49.0]
+[3.0.0]
 * Update n8n to 1.0.1
+* [Breaking changes for version 1.0](https://docs.n8n.io/1-0-preview/#expected-breaking-changes)
 * [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.0.0)
 * core Docker containers now run as the user node instead of root (#6365) (f636616)
 * core Drop debian and rhel7 images (#6365) (f636616)
