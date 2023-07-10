@@ -799,3 +799,6 @@
 * editor: SQL editor overhaul (#6282) (beedfb6)
 * HTTP Request Node: Notice about dev console (#6516) (d431117)
 
+[3.0.1]
+* Ensure we set the app domain for webhooks
+
