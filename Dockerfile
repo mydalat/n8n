@@ -4,7 +4,7 @@ RUN mkdir -p /app/pkg /app/code
 WORKDIR /app/code
 
 RUN apt-get update && \
-    apt-get -y install graphicsmagick recutils asciidoctor pandoc && \
+    apt-get -y install graphicsmagick recutils asciidoctor pandoc musl && \
     rm -rf /var/cache/apt /var/lib/apt/lists
 
 ARG N8N_VERSION=1.0.1
