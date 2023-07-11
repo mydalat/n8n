@@ -802,3 +802,6 @@
 [3.0.1]
 * Ensure we set the app domain for webhooks
 
+[3.0.2]
+* Add libmusl to support some custom nodes
+
