@@ -7,6 +7,8 @@ RUN apt-get update && \
     apt-get -y install graphicsmagick recutils asciidoctor pandoc musl && \
     rm -rf /var/cache/apt /var/lib/apt/lists
 
+RUN ln -s /usr/lib/x86_64-linux-musl/libc.so /lib/libc.musl-x86_64.so.1
+
 ARG N8N_VERSION=1.0.1
 
 # n8n. handlebars and jsonata are just helpful modules that user can enable
