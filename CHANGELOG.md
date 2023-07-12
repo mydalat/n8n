@@ -805,3 +805,18 @@
 [3.0.2]
 * Add libmusl to support some custom nodes
 
+[3.0.3]
+* Update n8n to 1.0.2
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.0.2)
+* core: Improve the performance of last 2 sqlite migrations (#6522) (718a89d)
+* core: Reduce memory consumption on BinaryDataManager.init (#6633) (39665b7)
+* core: Remove typeorm patches, but still enforce transactions on every migration (#6594) (8933e9b)
+* core: Update docker compose setup for V1 images (#6642) (cfa21bd)
+* editor: Show retry information in execution list only when it exists (#6587) (faa2bcc)
+* Brevo Node: Rename SendInBlue node to Brevo node (#6521) (81de96b)
+* Code Node: Install python modules always in a user-writable folder (#6568) (5abe530)
+* Google Drive Node: Fix regex in file RLC (#6607) (beba99f)
+* HTTP Request Node: Cleanup circular references in response (#6590) (2151594)
+* Postgres Node: Upsert does not fetch columns when schema other then public (#6643) (2e55cd9)
+* Salesforce Node: Fix typo for adding a contact to a campaign (#6598) (66f3cb6)
+
