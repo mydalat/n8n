@@ -820,3 +820,9 @@
 * Postgres Node: Upsert does not fetch columns when schema other then public (#6643) (2e55cd9)
 * Salesforce Node: Fix typo for adding a contact to a campaign (#6598) (66f3cb6)
 
+[3.0.4]
+* Update n8n to 1.0.3
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.0.3)
+* API: Implement users account quota guards (#6434) (7cd074e), closes #6636
+* Telegram Node: Add support for sending messages to forum topics (#5746) (b971fa9)
+
