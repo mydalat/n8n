@@ -826,3 +826,11 @@
 * API: Implement users account quota guards (#6434) (7cd074e), closes #6636
 * Telegram Node: Add support for sending messages to forum topics (#5746) (b971fa9)
 
+[3.0.5]
+* Update n8n to 1.0.4
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.0.4)
+* API: Do not add starting node on workflow creation (#6686) (597f2c7)
+* API: Fix issue with workflow setting not supporting newer nanoids (#6699) (1a3a90f)
+* core: Deleting manual executions should defer deleting binary data (#6680) (d8970db)
+* core: Filter out workflows that failed to activate on startup (#6676) (bc16afd)
+* core: Handle all uncaught exception, not just the ones from Axios (#6666) (975fc05)
