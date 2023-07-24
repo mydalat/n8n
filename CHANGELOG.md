@@ -834,3 +834,20 @@
 * core: Deleting manual executions should defer deleting binary data (#6680) (d8970db)
 * core: Filter out workflows that failed to activate on startup (#6676) (bc16afd)
 * core: Handle all uncaught exception, not just the ones from Axios (#6666) (975fc05)
+
+[3.0.6]
+* Update n8n to 1.0.5
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.0.5)
+* core: Add missing indices on sqlite (#6673) (f9c24c9)
+* core: Redirect user to previous url after SSO signin (#6710) (982f6f5)
+* core: Support redis cluster in queue mode (#6708) (0b9ae37)
+* core: Use lower cased email for SAML email attribute (#6663) (7b390ae)
+* editor: Add paywall state to non owner users for Variables (#6679) (1aa1484)
+* editor: Extend menu item and use it as a recursive component (#6618) (ee602bb)
+* editor: Increase contrast ratio in execution list workflow names (#6661) (77f2cfc)
+* editor: Show appropriate empty workflow list content when instance environment is readonly (#6610) (0a87198)
+* editor: Update design system menu item component (#6659) (902eb85)
+* FTP Node: List recursive ignore . and .. to prevent infinite loops (#6707) (da89668)
+* GitLab Trigger Node: Fix trigger activation 404 error (#6711) (f463ded)
+* Google BigQuery Node: Error description improvement (#6715) (7c8e534)
+
