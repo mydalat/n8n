@@ -883,3 +883,10 @@
 * Telegram Node: Add support for sending messages to forum topics (#5746) (e6a81f0)
 * Twitter Node: Node overhaul (#4788) (42721db)
 
+[3.1.1]
+* Update n8n to 1.1.1
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.1.1)
+* core: Allow ignoring SSL issues on generic oauth2 credentials (#6702) (45dcbd4)
+* editor: Display source control buttons properly (#6756) (41e3c43)
+* Lemlist Node: Fix pagination issues with campaigns and activities (#6734) (3865add)
+
