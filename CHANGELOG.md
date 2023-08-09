@@ -953,7 +953,7 @@
 * core: Cache webhooks (#6825) (0511458)
 * editor: Memoize locale translate calls during actions generation (#6773) (2d47e8d)
 
-[1.2.1]
+[3.2.1]
 * Update n8n to 1.2.1
 * [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.2.1)
 * core: Don't let bull override the default redis config (#6897) (39f23ca)
