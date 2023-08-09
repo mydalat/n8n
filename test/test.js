@@ -61,7 +61,7 @@ describe('Application life cycle test', function () {
         await browser.findElement(By.xpath('//input[@autocomplete="given-name"]')).sendKeys(FIRST_NAME);
         await browser.findElement(By.xpath('//input[@autocomplete="family-name"]')).sendKeys(LAST_NAME);
         await browser.findElement(By.xpath('//input[@autocomplete="new-password"]')).sendKeys(PASSWORD);
-        await browser.findElement(By.xpath('//button//span[contains(text(), "Next")]')).click();
+        await browser.findElement(By.xpath('//span[text()="Next"]')).click();
 
         // initials from FIRST_NAME and LAST_NAME
         await waitForElement(By.xpath('//span[text()="HC"]'));
@@ -74,7 +74,7 @@ describe('Application life cycle test', function () {
 
         await browser.findElement(By.xpath('//input[@autocomplete="email"]')).sendKeys(EMAIL);
         await browser.findElement(By.xpath('//input[@autocomplete="current-password"]')).sendKeys(PASSWORD);
-        await browser.findElement(By.xpath('//button//span[contains(text(), "Sign in")]')).click();
+        await browser.findElement(By.xpath('//button/span[text()="Sign in"]')).click();
 
         await waitForElement(By.xpath('//span[text()="HC"]'));
     }
@@ -90,8 +90,8 @@ describe('Application life cycle test', function () {
         await waitForElement(By.xpath('//span[text()="HC"]'));
         await browser.findElement(By.xpath('//span[text()="HC"]')).click();
 
-        await waitForElement(By.xpath('//li[contains(text(), "Sign out")]'));
-        await browser.findElement(By.xpath('//li[contains(text(), "Sign out")]')).click();
+        await waitForElement(By.xpath('//li[text()="Sign out"]'));
+        await browser.findElement(By.xpath('//li[text()="Sign out"]')).click();
 
         await waitForElement(By.xpath('//input[@autocomplete="email"]'));
     }
@@ -102,10 +102,10 @@ describe('Application life cycle test', function () {
         await browser.get(`https://${app.fqdn}/workflows`);
 
         // Find element with text "Cloudron Test Workflow" and click it.
-        await waitForElement(By.xpath(`//h2[contains(text(), "My workflow")]`));
-        await browser.findElement(By.xpath(`//h2[contains(text(), "My workflow")]`)).click();
+        await waitForElement(By.xpath('//h2[text()="My workflow"]'));
+        await browser.findElement(By.xpath('//h2[text()="My workflow"]')).click();
 
-        await waitForElement(By.xpath(`//span[@title="My workflow"]`));
+        await waitForElement(By.xpath('//span[@title="My workflow"]'));
         await timers.setTimeout(500);
     }
 
@@ -124,8 +124,8 @@ describe('Application life cycle test', function () {
         await browser.findElement(By.xpath('//div[@class="el-message-box__input"]//input')).sendKeys(workflow_file_url);
 
         // click import
-        await waitForElement(By.xpath('//span[contains(text(),"Import")]/parent::button'));
-        await browser.findElement(By.xpath('//span[contains(text(),"Import")]/parent::button')).click();
+        await waitForElement(By.xpath('//button/span[text()="Import"]'));
+        await browser.findElement(By.xpath('//button/span[text()="Import"]')).click();
 
         // Activate Workflow
         await waitForElement(By.xpath('//div[@title="Activate workflow"] | //div[@title="Activate Workflow"]'));
@@ -151,7 +151,7 @@ describe('Application life cycle test', function () {
 
     it('can get app information', getAppInfo);
     it('can setup', setup);
-//    it('can login', login);
+    // it('can login', login);
     it('can import workflow from URL', importWorkflowFromUrl);
     it('check if workflow created data', checkWorkflowData);
     it('can logout', logout);
