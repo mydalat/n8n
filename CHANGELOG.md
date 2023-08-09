@@ -953,3 +953,11 @@
 * core: Cache webhooks (#6825) (0511458)
 * editor: Memoize locale translate calls during actions generation (#6773) (2d47e8d)
 
+[1.2.1]
+* Update n8n to 1.2.1
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.2.1)
+* core: Don't let bull override the default redis config (#6897) (39f23ca)
+* core: Update frontend urls when using the --tunnel option (#6898) (d9d2d0f)
+* editor: Update execution view layout (#6882) (cdd24dc)
+* Fix issue with key formatting introduced in 1.2.0 (#6896) (f21aba7)
+
