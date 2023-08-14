@@ -26,6 +26,9 @@ ENV N8N_USER_FOLDER="/app/data/user"
 ENV N8N_CONFIG_FILES="/app/data/configs/default.json"
 ENV N8N_CUSTOM_EXTENSIONS="/app/data/custom-extensions"
 
+# put n8n binary in the path
+ENV PATH=/app/code/node_modules/.bin:$PATH
+
 COPY start.sh env.sh.template /app/pkg/
 
 CMD [ "/app/pkg/start.sh" ]
