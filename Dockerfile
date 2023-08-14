@@ -9,7 +9,7 @@ RUN apt-get update && \
 
 RUN ln -s /usr/lib/x86_64-linux-musl/libc.so /lib/libc.musl-x86_64.so.1
 
-ARG N8N_VERSION=1.2.1
+ARG N8N_VERSION=1.2.2
 
 # n8n. handlebars and jsonata are just helpful modules that user can enable
 RUN npm install n8n@${N8N_VERSION}  && \

@@ -961,3 +961,15 @@
 * editor: Update execution view layout (#6882) (cdd24dc)
 * Fix issue with key formatting introduced in 1.2.0 (#6896) (f21aba7)
 
+[3.2.2]
+* Update n8n to 1.2.2
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.2.2)
+* core: Fix fetching of EE executions (#6901) (28d460a)
+* core: Fix issue with key formatting if null or undefined (#6924) (493a6de)
+* editor: Fix event emit on credential sharing (#6922) (dab4aa3)
+* editor: Fix multiOptions parameters resetting on initial load (#6903) (ed3b89e)
+* editor: Prevent workflow breaking when credential type is unknown (#6923) (92536b7)
+* Email Trigger (IMAP) Node: Fix connection issue with unexpected spaces in host (#6886) (f1e7c73)
+* HTTP Request Node: Improve error handling for TCP socket errors when Continue On Fail is enabled (#6925) (18e0b88)
+* Respond to Webhook Node: Return headers in response (#6921) (3787156)
+

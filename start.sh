@@ -14,7 +14,6 @@ config_file="/app/data/configs/default.json"
 
 echo "=> Loading configuration"
 export VUE_APP_URL_BASE_API="${CLOUDRON_APP_ORIGIN}/"
-export WEBHOOK_TUNNEL_URL="${CLOUDRON_APP_ORIGIN}/"
 export WEBHOOK_URL="${CLOUDRON_APP_ORIGIN}/"
 export N8N_VERSION_NOTIFICATIONS_ENABLED=false
 export N8N_DIAGNOSTICS_ENABLED=false
