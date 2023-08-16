@@ -973,3 +973,26 @@
 * HTTP Request Node: Improve error handling for TCP socket errors when Continue On Fail is enabled (#6925) (18e0b88)
 * Respond to Webhook Node: Return headers in response (#6921) (3787156)
 
+[3.3.0]
+* Update n8n to 1.3.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.3.0)
+* core: Don't let bull override the default redis config (#6897) (cfeb322)
+* core: Fix fetching of EE executions (#6901) (f3fce48)
+* core: Update frontend urls when using the --tunnel option (#6898) (718e613)
+* editor: Disable telemetry in dev mode and in E2E tests (#6869) (808a928)
+* editor: Fix code node’s content property to be reactive (#6931) (3b75bc6)
+* editor: Fix event emit on credential sharing (#6922) (297c3c9)
+* editor: Fix multiOptions parameters resetting on initial load (#6903) (49867c2)
+* editor: Update execution view layout (#6882) (0339732)
+* Email Trigger (IMAP) Node: Fix connection issue with unexpected spaces in host (#6886) (f3248e4)
+* Fix issue with key formatting if null or undefined (#6924) (4e4a3cf)
+* Fix issue with key formatting introduced in 1.2.0 (#6896) (0e075c9)
+* Fix lag when node parameters are updated (#6941) (3eb65e0)
+* HTTP Request Node: Improve error handling for TCP socket errors when Continue On Fail is enabled (#6925) (96ff1f8)
+* Prevent workflow breaking when credential type is unknown (#6923) (e83b93f)
+* Respond to Webhook Node: Return headers in response (#6921) (a82107f)
+* core: Add support for not requiring SMTP auth with user management (#3742) (eead6d4)
+* core: Descriptive message for common nodeJS errors (#6841) (3adb0b6)
+* editor: Ask AI in Code node (#6672) (fde6ad1)
+* Enable parallel processing on multiple queue nodes (#6295) (44afcff)
+
