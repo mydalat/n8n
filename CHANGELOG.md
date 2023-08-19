@@ -996,3 +996,10 @@
 * editor: Ask AI in Code node (#6672) (fde6ad1)
 * Enable parallel processing on multiple queue nodes (#6295) (44afcff)
 
+[3.3.1]
+* Update n8n to 1.3.1
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.3.1)
+* core: Fix continueOnFail for expression error in Set (#6939) (e685780)
+* editor: Do not flag dynamic load options issue on expression (#6932) (81367cf)
+* editor: Fix Remove all fields not removing values in resource mapper (#6940) (c80163f)
+* editor: Prevent Code node linter from erroring on null parse (#6934) (239e967)
