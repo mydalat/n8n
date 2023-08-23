@@ -1003,3 +1003,15 @@
 * editor: Do not flag dynamic load options issue on expression (#6932) (81367cf)
 * editor: Fix Remove all fields not removing values in resource mapper (#6940) (c80163f)
 * editor: Prevent Code node linter from erroring on null parse (#6934) (239e967)
+
+[3.4.0]
+* Update n8n to 1.4.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.4.0)
+* core: Add recoveryInProgress flag file (#6962) (7b96820)
+* core: Fix continueOnFail for expression error in Set (#6939) (d4fac05)
+* core: Fix import:workflow command (#6996) (8c38d85)
+* core: Replace throw with warning when deactivating a non-active workflow (#6969) (b6a00fe)
+* core: Set up OAuth2 cred test (#6960) (4fc69b7)
+* editor: Do not flag dynamic load options issue on expression (#6932) (60a1ef0)
+* editor: Ensure community node install button tracks user agreement (#6976) (0ddfc73)
+* editor: Fix parsing for single quoted resolvables (#6982) (f32e993)
