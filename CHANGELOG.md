@@ -1015,3 +1015,10 @@
 * editor: Do not flag dynamic load options issue on expression (#6932) (60a1ef0)
 * editor: Ensure community node install button tracks user agreement (#6976) (0ddfc73)
 * editor: Fix parsing for single quoted resolvables (#6982) (f32e993)
+
+[3.4.1]
+* Update n8n to 1.4.1
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.4.1)
+* editor: Fix sending of Ask AI tracking events (#7002) (bf4f545)
+* Webhook Node: Fix URL params for webhooks (#6986) (60f70f1)
+
