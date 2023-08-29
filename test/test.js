@@ -194,7 +194,7 @@ describe('Application life cycle test', function () {
     });
 
     // test update
-    it('can install app', function () { execSync(`cloudron install --appstore-id ${app.manifest.id} --location ${LOCATION}`, EXEC_ARGS); });
+    it('can install app', function () { execSync(`cloudron install --appstore-id io.n8n.cloudronapp --location ${LOCATION}`, EXEC_ARGS); });
     it('can get app information', getAppInfo);
     it('can setup', setup);
     it('can import workflow from URL', importWorkflowFromUrl);
