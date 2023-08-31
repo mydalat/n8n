@@ -1023,7 +1023,7 @@
 * Webhook Node: Fix URL params for webhooks (#6986) (60f70f1)
 
 [3.5.0]
-* Update n8n to 1.5.0
+* Update n8n to 1.5.1
 * [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.5.0)
 * Agile CRM Node: Fix issue with company address not working (#6997) (2f81652)
 * Code Node: Switch over to vm2 fork (#7018) (dfe0fa6)
@@ -1042,4 +1042,5 @@
 * core: Add filtering, selection and pagination to users (#6994) (b716241)
 * editor: Debug executions in the editor (#6834) (c833078)
 * RSS Read Node: Add support for self signed certificates (#7039) (3b9f0fe)
+* Strapi Node: Add token credentials (#7048) (c01bca5)
 
