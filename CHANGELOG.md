@@ -1022,3 +1022,24 @@
 * editor: Fix sending of Ask AI tracking events (#7002) (bf4f545)
 * Webhook Node: Fix URL params for webhooks (#6986) (60f70f1)
 
+[3.5.0]
+* Update n8n to 1.5.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.5.0)
+* Agile CRM Node: Fix issue with company address not working (#6997) (2f81652)
+* Code Node: Switch over to vm2 fork (#7018) (dfe0fa6)
+* core: Invalid NODES_INCLUDE should not crash the app (#7038) (04e3178), closes #6683
+* core: Setup websocket keep-live messages (#6866) (8bdb07d), closes #6757
+* core: Throw NodeSSLError only for nodes that allow ignoring SSL issues (#6928) (a01c3fb)
+* Date & Time Node: Dont parse date if it's not set (null or undefined) (#7050) (d72f79f)
+* editor: Fix sending of Ask AI tracking events (#7002) (fb05afa)
+* Microsoft Excel 365 Node: Support for more extensions in workbook rlc (#7020) (d6e1cf2)
+* MongoDB Node: Stringify response ObjectIDs (#6990) (9ca990b)
+* MongoDB Node: Upgrade mongodb package to address CVE-2021-32050 (#7054) (d3f6356)
+* Postgres Node: Empty return data fix for Postgres and MySQL (#7016) (176ccd6)
+* Webhook Node: Fix URL params for webhooks (#6986) (596b569)
+* core: External Secrets storage for credentials (#6477) (ed927d3)
+* core: Add MFA (#4767) (2b7ba6f)
+* core: Add filtering, selection and pagination to users (#6994) (b716241)
+* editor: Debug executions in the editor (#6834) (c833078)
+* RSS Read Node: Add support for self signed certificates (#7039) (3b9f0fe)
+
