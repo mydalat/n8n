@@ -1044,3 +1044,6 @@
 * RSS Read Node: Add support for self signed certificates (#7039) (3b9f0fe)
 * Strapi Node: Add token credentials (#7048) (c01bca5)
 
+[3.5.1]
+* Add firebase-admin npm package
+
