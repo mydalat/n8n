@@ -1047,3 +1047,20 @@
 [3.5.1]
 * Add firebase-admin npm package
 
+[3.6.0]
+* Update n8n to 1.6.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.6.0)
+* core: Add support for in-transit encryption (TLS) on Redis connections (#7047) (a910757)
+* core: Disallow orphan executions (#7069) (8a28e98)
+* core: Split event bus controller into community and ee (#7107) (011ee2e)
+* editor: Standardize save text (#7093) (58b3492)
+* Ensure all new executions are saved (#7061) (b8e06d2)
+* Load remote resources even if expressions in non requried parameters resolve (#6987) (8a8d4e8)
+* Postgres Node: Connection pool of the database object has been destroyed (#7074) (9dd5f0e)
+* Postgres Node: Tunnel doesn't always close (#7087) (58e55ba)
+* core: Add list query middleware to credentials (#7041) (fd78021)
+* core: Add support for floating licenses (#7090) (e26553f)
+* core: Migration for soft deletions for executions (#7088) (413e0bc)
+* HTTP Request Node: Determine binary file name from content-disposition headers (#7032) (273d091)
+* TheHive Node: Overhaul (#6457) (73e782e)
+
