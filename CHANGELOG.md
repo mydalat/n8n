@@ -1064,3 +1064,8 @@
 * HTTP Request Node: Determine binary file name from content-disposition headers (#7032) (273d091)
 * TheHive Node: Overhaul (#6457) (73e782e)
 
+[3.6.1]
+* Update n8n to 1.6.1
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.6.1)
+* Postgres Node: Fix automatic column mapping
+
