@@ -1069,3 +1069,21 @@
 * [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.6.1)
 * Postgres Node: Fix automatic column mapping
 
+[3.7.0]
+* Update n8n to 1.7.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.7.0)
+* Code Node: Disable WASM to address CVE-2023-37903 (#7122) (36a8e91)
+* Code Node: Upgrade vm2 to address CVE-2023-37466 (#7123) (0a35025)
+* core: Disable Node.js custom inspection to address CVE-2023-37903 (#7125) (a223734)
+* editor Account for nanoid workflow ids for subworkflow execute policy (#7094) (67092c0)
+* editor: Tweak hover area of workflow / cred cards (#7108) (217de21)
+* editor: Unbind workflow endpoint events in case of workspace reset (#7129) (c9b7948)
+* editor: Update git repo url validation regex (#7151) (e51f173)
+* Google Cloud Firestore Node: Fix empty string interpreted as number (#7136) (915cfa0)
+* HubSpot Node: Fix issue with contact lists not working (#5582) (6e5a4f6)
+* Postgres Node: Fix automatic column mapping (#7121) (92af131)
+* Zoho CRM Node: Fix issue with Sales Order not updating (#6959) (fd800b6)
+* core: Add an option to enable WAL mode for SQLite (#7118) (1d1a022)
+* core: Add commands to workers to respond with current state (#7029) (7b49cf2)
+* Salesforce Node: Add fax field to lead option (#7030) (01f875a)
+
