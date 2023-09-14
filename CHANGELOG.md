@@ -1087,3 +1087,8 @@
 * core: Add commands to workers to respond with current state (#7029) (7b49cf2)
 * Salesforce Node: Add fax field to lead option (#7030) (01f875a)
 
+[3.7.1]
+* Update n8n to 1.7.1
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.7.1)
+* editor: Prevent duplicate creation of credential for OAuth2 (#7163) (f6d7ffe)
+
