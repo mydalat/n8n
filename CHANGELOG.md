@@ -1092,3 +1092,22 @@
 * [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.7.1)
 * editor: Prevent duplicate creation of credential for OAuth2 (#7163) (f6d7ffe)
 
+[3.8.0]
+* Update n8n to 1.8.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.8.0)
+* core: Make parsing of content-type and content-disposition headers more flexible (#7217) (d41546b), closes #7149
+* core: Resolve domains to IPv4 first (#7206) (e9ce531)
+* editor: Add ssh key type selection to source control settings when regenerating key (#7172) (54bf66d)
+* editor: No need to add click emitting click events, VUE delegates the handler to the root element of the component (#7182) (3c055e4)
+* editor: Prevent duplicate creation of credential for OAuth2 (#7163) (07a6417)
+* editor: Testing flaky resource mapper feature in e2e tests (#7165) (aaf87c3)
+* HTML Node: Add pairedItem support for 'Convert to HTML Table' operation (#7196) (6bc477b)
+* HTTP Request Node: Decrease default timeout to 5min (#7177) (321780d)
+* seven Node: Rename sms77 to seven, fix credentials test (#7180) (cf776b8)
+* X (Formerly Twitter) Node: Rename Twitter to X (keep Twitter alias) (#7179) (d317e09)
+* core: Add command to trigger license refresh on workers (#7184) (9f797b9)
+* core: Add rsa option to ssh key generation (#7154) (fdac2c8)
+* Linear Node: Add support for OAuth2 (#7201) (12a3168)
+* Microsoft Outlook Node: Node overhaul (#4449) (556a613)
+* Set Node: Overhaul (#6348) (3a47455)
+
