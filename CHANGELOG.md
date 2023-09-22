@@ -1111,3 +1111,11 @@
 * Microsoft Outlook Node: Node overhaul (#4449) (556a613)
 * Set Node: Overhaul (#6348) (3a47455)
 
+[3.8.1]
+* Update n8n to 1.8.1
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.8.1)
+* Airtable Node: Attachments field type fix (#7227) (ebfcc87)
+* core: Handle `filename*` with quotes in Content-Disposition header (#7229) (fb36b0a)
+* Ensure new Set node is on top of search list (#7215) (c8fb06f)
+* Issue enforcing user limits on start plan (#7188) (50a4c5e)
+
