@@ -1119,3 +1119,9 @@
 * Ensure new Set node is on top of search list (#7215) (c8fb06f)
 * Issue enforcing user limits on start plan (#7188) (50a4c5e)
 
+[3.8.2]
+* Update n8n to 1.8.2
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.8.2)
+* editor: Add debug feature docs link (#7240) (1b2ccca)
+* editor: Fix SQL editor issue (#7236) (539f954)
+
