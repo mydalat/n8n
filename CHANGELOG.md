@@ -1125,3 +1125,11 @@
 * editor: Add debug feature docs link (#7240) (1b2ccca)
 * editor: Fix SQL editor issue (#7236) (539f954)
 
+[3.9.0]
+* Update n8n to 1.9.3
+* Update base image to 4.2.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.9.3)
+* editor: Fix completions for .json on quoted node name in Code node (#7382) (c8ae64b)
+* editor: Revert connection snapping changes (2e43ee6)
+* Notion Node: Handle empty values correctly for Notion selects + multi selects (#7383) (0c3070f)
+
