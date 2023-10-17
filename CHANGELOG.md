@@ -1133,3 +1133,6 @@
 * editor: Revert connection snapping changes (2e43ee6)
 * Notion Node: Handle empty values correctly for Notion selects + multi selects (#7383) (0c3070f)
 
+[3.9.1]
+* Fix creation of runtime dirs with new base image
+

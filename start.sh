@@ -3,7 +3,7 @@
 set -eu
 
 echo "=> Ensure directories"
-mkdir -p /run/npmcache /app/data/user/.n8n /app/data/custom-extensions /app/data/configs /run/cloudron.cache /run/public
+mkdir -p /run/root.npm /run/cloudron.npm /app/data/user/.n8n /app/data/custom-extensions /app/data/configs /run/cloudron.cache /run/public
 
 # unused path
 rm -rf /app/data/modules

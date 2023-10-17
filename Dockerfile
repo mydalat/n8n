@@ -16,9 +16,6 @@ RUN npm install n8n@${N8N_VERSION}  && \
     npm install handlebars@4.7.7 jsonata@2.0.2 marked@4.3.0 bwip-js@3.3.0 ajv-formats@2.1.1 odoo-xmlrpc@1.0.8 firebase-admin@11.10.1
 
 # npm config set cache --global /run/npmcache
-RUN rm -rf /root/.npm && ln -s /run/npmcache /root/.npm
-RUN rm -rf /home/cloudron/.npm && ln -s /run/npmcache /home/cloudron/.npm
-RUN rm -rf /home/cloudron/.cache && ln -s /run/cloudron.cache /home/cloudron/.cache
 RUN rm -rf /app/code/node_modules/n8n/dist/public && ln -s /run/public /app/code/node_modules/n8n/dist/public
 
 # this allows to use the CLI easily without having to set these
