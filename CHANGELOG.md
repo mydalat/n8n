@@ -1136,3 +1136,7 @@
 [3.9.1]
 * Fix creation of runtime dirs with new base image
 
+[3.10.0]
+* Update n8n to 1.11.1
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.11.1)
+
