@@ -1140,3 +1140,17 @@
 * Update n8n to 1.11.1
 * [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.11.1)
 
+[3.10.1]
+* Update n8n to 1.11.2
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.11.2)
+* core: Handle gzip and deflate compressed request payloads (#7461) (f43ff71)
+* core: Prevent false stalled jobs in queue mode from displaying as errored (#7435) (465a952)
+* core: Reduce logging overhead for levels that do not output (#7479) (010aa57)
+* editor: Allow importing the same workflow multiple times (#7458) (33e3df8), closes #7457
+* editor: Fix canvas selection breaking after interacting with node actions (#7466) (90ce8de)
+* editor: Fix connections disappearing after reactivating canvas and renaming a node (#7483) (b0bd0d8)
+* editor: Open only one tab with plans page (#7377) (d14e9cb)
+* Ldap Node: Fix issue with connections not closing correctly (#7432) (60ca02e)
+* MySQL Node: Resolve expressions in v1 (#7464) (2b18909)
+* TheHive 5 Node: Observable encoding in alert > create fix (#7450) (b9547ad)
+
