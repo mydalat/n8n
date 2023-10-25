@@ -1154,3 +1154,7 @@
 * MySQL Node: Resolve expressions in v1 (#7464) (2b18909)
 * TheHive 5 Node: Observable encoding in alert > create fix (#7450) (b9547ad)
 
+[3.11.0]
+* Update n8n to 1.13.0
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.13.0)
+
