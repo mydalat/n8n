@@ -1155,6 +1155,6 @@
 * TheHive 5 Node: Observable encoding in alert > create fix (#7450) (b9547ad)
 
 [3.11.0]
-* Update n8n to 1.14.0
-* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.14.0)
+* Update n8n to 1.14.2
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.14.2)
 
