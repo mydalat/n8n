@@ -1158,3 +1158,12 @@
 * Update n8n to 1.14.2
 * [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.14.2)
 
+[3.12.0]
+* Update n8n to 1.15.2
+* [Full changelog](https://github.com/n8n-io/n8n/releases/tag/n8n@1.15.2)
+* core: Decrease reset password token expire time (#7598) (44664d2)
+* editor: Allow overriding theme from query params (#7591) (1362585)
+* editor: Fix issue that frontend breaks with unkown nodes (#7596) (dd7b7d1)
+* editor: Hide not supported node options (#7597) (658cacc)
+* editor: Remove unknown credentials on pasting workflow (#7582) (0768271)
+
